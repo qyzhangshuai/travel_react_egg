@@ -1,0 +1,32 @@
+@rootValue:'3.75';
+
+html {
+  font-size: calc(~"100vw / @{rootValue}");
+  margin: 0 auto;
+  body {
+    /* 重置字体大小 */
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  html {
+    font-size: calc(~"100vw / @{rootValue}");
+    margin: 0 auto;
+    body {
+      /* 重置字体大小 */
+      font-size: 14px;
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  html {
+    font-size: 9vw;
+    margin: 0 auto;
+    body {
+      /* 重置字体大小 */
+      font-size: 14px;
+    }
+  }
+}
