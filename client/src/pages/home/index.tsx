@@ -12,11 +12,13 @@ export default function IndexPage() {
 
   const state = useSelector(state => state)
 
-  console.log('state', state)
+  const handleClick = (e) => {
+    console.log('e', e)
+  }
 
   return (
     <div>
-      <h1 className={styles.title}>Page index</h1>
+      <h1 onClick={handleClick} className={styles.title}>Page index</h1>
     </div>
   );
 }

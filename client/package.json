@@ -24,8 +24,11 @@
   "dependencies": {
     "@ant-design/pro-layout": "^6.5.0",
     "@umijs/preset-react": "1.x",
+    "ahooks": "^2.9.6",
     "axios": "^0.21.1",
     "dva-model-extend": "^0.1.2",
+    "lodash": "^4.17.20",
+    "query-string": "^6.13.8",
     "react-icons": "^4.2.0",
     "umi": "^3.3.7"
   },

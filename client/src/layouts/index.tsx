@@ -2,12 +2,12 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-06 20:30:01
- * @LastEditTime: 2021-02-08 09:43:16
+ * @LastEditTime: 2021-02-08 19:17:21
  * @LastEditors: zs
  */
 import { FC } from 'react'
 import { MenuBar } from '@/components';
-import { useLocation } from 'umi';
+import { Redirect, useLocation } from 'umi';
 interface BasicLayoutProps {
 
 }
@@ -16,7 +16,12 @@ interface BasicLayoutProps {
 
 const BasicLayout: FC<BasicLayoutProps> = (props) => {
   const location = useLocation();
-  const paths = ['/', '/order', '/user'];
+  const paths = ['/home', '/order', '/user'];
+
+  if (location.pathname === '/') {
+    return <Redirect to='/home' />
+  }
+
   return (
     <div>
       <MenuBar

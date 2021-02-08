@@ -2,7 +2,7 @@
  * @description: 菜单栏
  * @author: zs
  * @Date: 2021-02-07 09:36:53
- * @LastEditTime: 2021-02-08 10:39:43
+ * @LastEditTime: 2021-02-08 19:12:10
  * @LastEditors: zs
  */
 import React from 'react'
@@ -35,7 +35,7 @@ const MenuBar: React.FC<MenuBarProps> = ({
       title: '首页',
       selectedIcon: <BsHouseDoorFill style={{ fontSize: '0.24rem' }} />,
       icon: <BsHouseDoor style={{ fontSize: '0.24rem' }} />,
-      link: '/'
+      link: '/home'
     },
     {
       title: '订单',
