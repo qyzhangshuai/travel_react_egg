@@ -11,20 +11,20 @@ interface UserInfo {
   name: string
 }
 
-export interface GlobalModelState {
+export interface AppModelState {
   userInfo: UserInfo;
 }
 
-export interface GlobalModelType {
-  namespace: 'global';
-  state: GlobalModelState;
+export interface AppModelType {
+  namespace: 'app';
+  state: AppModelState;
   effects: {
     getUserInfo: Effect;
   };
   reducers: {
     // save: Reducer<GlobalModelState>;
     // 启用 immer 之后
-    save: ImmerReducer<GlobalModelState>;
+    save: ImmerReducer<AppModelState>;
   };
   subscriptions: { setup: Subscription };
 }

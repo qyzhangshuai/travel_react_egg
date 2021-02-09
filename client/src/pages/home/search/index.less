@@ -1,0 +1,28 @@
+@import '~@/style/mixin.less';
+.search {
+  margin: 12px 0;
+  background: #fff;
+  :global {
+    .am-list-item .am-list-line .am-list-content,
+    .am-list-item .am-list-line .am-list-extra {
+      font-size: 18px;
+    }
+  }
+  &_addr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  &_time {
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    .flex(row, space-between, flex-start);
+    &_left {
+      color: #000;
+    }
+    &_right {
+      color: #888;
+    }
+  }
+}

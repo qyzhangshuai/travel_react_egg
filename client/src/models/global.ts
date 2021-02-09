@@ -2,24 +2,24 @@
  * @description: 全局的model
  * @author: zs
  * @Date: 2021-02-07 09:50:13
- * @LastEditTime: 2021-02-08 18:08:24
+ * @LastEditTime: 2021-02-09 11:21:32
  * @LastEditors: zs
  */
 import modelExtend from 'dva-model-extend'
-import { commonModel } from './common'
-import { globalService } from '@/service'
-import { GlobalModelType } from '@/types/store/global'
+import { commonModel } from '@/models/common'
+import { appService } from '@/service'
+import { AppModelType } from '@/types/store/app'
 
-const namespace = 'global'
+const namespace = 'app'
 
-const globalModel: GlobalModelType = {
+const globalModel: AppModelType = {
     namespace,
     state: {
         userInfo: { name: 'hxy' },
     },
     effects: {
         *getUserInfo({ payload }, { call, put }) {
-            const response = yield call(globalService.getLoginInfo, { ...payload, name: 'test' });
+            const response = yield call(appService.getLoginInfo, { ...payload, name: 'test' });
             if (response.status === 'ok') {
                 yield put({
                     type: 'save',
