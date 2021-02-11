@@ -2,16 +2,15 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-08 11:43:15
- * @LastEditTime: 2021-02-09 22:44:10
+ * @LastEditTime: 2021-02-11 09:11:43
  * @LastEditors: zs
  */
 import { defineConfig } from 'umi';
 import px2rem from 'postcss-plugin-px2rem';
 import HardSourceWebpackPlugin from 'hard-source-webpack-plugin'
 import routes from './route'
-import theme from './theme.config'
-
-const build_env = process.env.BUILD_ENV || 'dev'
+import theme from './utils/theme.config'
+import version from './utils/version'
 
 export default defineConfig({
   nodeModulesTransform: {
@@ -23,7 +22,8 @@ export default defineConfig({
     immer: true
   },
   define: {
-    'process.env.BUILD_ENV': build_env,
+    'process.env.ENV': 'dev',
+    'process.env.version': version,
   },
   devtool: false, // 禁用 sourcemap,增量编译提速
   dynamicImport: {},
