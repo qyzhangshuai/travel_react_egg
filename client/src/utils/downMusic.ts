@@ -2,19 +2,19 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-11 08:40:24
- * @LastEditTime: 2021-02-11 08:50:06
+ * @LastEditTime: 2021-02-22 21:42:03
  * @LastEditors: zs
  */
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import storage from './storage'
-import { prefix } from '@config';
+import { prefix } from '@/config';
 
 const defaultHeaders = {
   'X-Requested-With': 'XMLHttpRequest',
   'Accept': 'application/json',
   'Content-Type': 'application/json; charset=UTF-8',
 }
-export default (options, name="音乐") => {
+export default (options: AxiosRequestConfig, name = "音乐") => {
   return new Promise<void>((resolve, reject) => {
     const token = storage.getItem(`${prefix}-token`);
     axios({

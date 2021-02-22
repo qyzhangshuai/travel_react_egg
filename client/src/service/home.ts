@@ -2,22 +2,18 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-09 11:22:55
- * @LastEditTime: 2021-02-09 16:55:04
+ * @LastEditTime: 2021-02-22 21:39:59
  * @LastEditors: zs
  */
-import { axiosGet } from '@/utils/axios';
+import { request } from '@/utils';
 import { home } from '@/config/apis'
-// const { home } = apis
+
 // 获取最热民宿
 interface GetHotHouse {
   name: string;
 }
-const getHotHouse = (params: GetHotHouse) => axiosGet(home.getHotHouse, params)
+export const getHotHouse = (data: GetHotHouse) => request(home.getHotHouse, { data })
 
 // 获取城市列表
-const getCity = () => axiosGet(home.getCity)
+export const getCity = () => request(home.getCity)
 
-export default {
-  getHotHouse,
-  getCity,
-}

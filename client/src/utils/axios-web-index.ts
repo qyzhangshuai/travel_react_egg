@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse, Method } from 'axios'
 import { cloneDeep } from 'lodash'
-import { Toast } from 'antd-mobile'
+import { message } from 'antd'
 import storage from './storage'
 import { prefix } from '@/config';
 
@@ -18,7 +18,7 @@ type RequestResponse = {
   [props: string]: any
 }
 
-export type Options = AxiosRequestConfig & { hasErrorTip?: boolean }
+type Options = AxiosRequestConfig & { hasErrorTip?: boolean }
 
 const defaultHeaders = {
   'X-Requested-With': 'XMLHttpRequest',
@@ -58,7 +58,7 @@ export default function request(url: string, options: Options = {}): RequestProm
       const { status, statusText } = response
       const successed = checkRspStatus(response)
       if (successed) {
-        const data = Array.isArray(response.data) ? response.data : (response.data.data || null)
+        const data = Array.isArray(response.data) ? response.data : (response.data.data || {})
         return Promise.resolve({
           ...response,
           success: true,
@@ -114,7 +114,7 @@ export default function request(url: string, options: Options = {}): RequestProm
 export function checkRspStatus({ status, data = {} }: AxiosResponse) {
   if (
     (status >= 200 && status < 300)
-    && (data.code === 0 || data.code === 200 || data.status >= 200 && data.status < 300) // code 码是服务端返回的
+    && (data.code === 0 || data.code === 200) // code 码是服务端返回的
   ) {
     return true;
   }
@@ -135,7 +135,8 @@ function tipError(response: AxiosResponse) {
   //   });
   //   return;
   // }
-  Toast.fail(errorMsg)
+
+  message.error(errorMsg);
 }
 
 // 处理请求参数

@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-09 09:36:02
- * @LastEditTime: 2021-02-09 14:36:24
+ * @LastEditTime: 2021-02-22 21:56:17
  * @LastEditors: zs
  */
 import React, { useState, useEffect, memo } from 'react';
@@ -27,13 +27,9 @@ const Search: React.FC<SearchProps> = ({
   const [times, setTimes] = useState('可选时间');
   const [dateShow, setDateShow] = useState(false);
 
-  const handleCityChange = (value) => {
-    setSelectedCity(value);
-  };
+  const handleCityChange = (value) => setSelectedCity(value)
 
-  const handleDate = () => {
-    setDateShow(!dateShow);
-  };
+  const handleDate = () => setDateShow(!dateShow)
 
   const handleDateConfirm = (startTime, endTime) => {
     setDateShow(!dateShow);
@@ -63,8 +59,7 @@ const Search: React.FC<SearchProps> = ({
           <Picker
             title='城市'
             data={citys}
-            // value={selectedCity}
-            value={[]}
+            value={selectedCity}
             cascade={false}
             cols={1}
             onChange={handleCityChange}

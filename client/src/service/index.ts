@@ -1,9 +1,9 @@
 /**
- * @description: 
+ * @description: 请求集合
  * @author: zs
  * @Date: 2021-02-07 10:31:23
- * @LastEditTime: 2021-02-09 11:23:06
+ * @LastEditTime: 2021-02-22 18:32:43
  * @LastEditors: zs
  */
-export { default as appService } from './app';
-export { default as homeService } from './home';
+export * as appService from './app';
+export * as homeService from './home'

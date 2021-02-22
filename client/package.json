@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@ant-design/pro-layout": "^6.5.0",
+    "@better-scroll/core": "^2.2.0",
     "@umijs/preset-react": "1.x",
     "ahooks": "^2.9.6",
     "axios": "^0.21.1",

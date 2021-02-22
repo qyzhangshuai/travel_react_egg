@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-08 11:43:15
- * @LastEditTime: 2021-02-11 09:11:43
+ * @LastEditTime: 2021-02-22 21:43:32
  * @LastEditors: zs
  */
 import { defineConfig } from 'umi';
@@ -25,7 +25,7 @@ export default defineConfig({
     'process.env.ENV': 'dev',
     'process.env.version': version,
   },
-  devtool: false, // 禁用 sourcemap,增量编译提速
+  // devtool: false, // 禁用 sourcemap,增量编译提速
   dynamicImport: {},
   // dynamicImport:{
   //   loading: '@/components/loading',
@@ -42,6 +42,12 @@ export default defineConfig({
   ],
   routes: routes,
   fastRefresh: {},
+  // proxy: {
+  //   '/api/proxy': {
+  //     'target': 'http://127.0.0.1:7001/',
+  //     'changeOrigin': true
+  //   }
+  // },
   // chainWebpack(memo) {
   //   memo.plugin('HardSourceWebpackPlugin').use(new HardSourceWebpackPlugin())
   //   // antd组件库

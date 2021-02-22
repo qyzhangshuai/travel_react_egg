@@ -2,10 +2,10 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-09 09:34:55
- * @LastEditTime: 2021-02-09 14:45:24
+ * @LastEditTime: 2021-02-22 22:07:23
  * @LastEditors: zs
  */
-import React, { memo } from 'react'
+import React from 'react'
 import { history } from 'umi'
 import styles from './index.less'
 
@@ -19,12 +19,10 @@ const Hot: React.FC<HotProps> = ({
   houses
 }) => {
 
-  const handleClick = (id) => {
+  const handleClick = (id: string) => {
     history.push({
       pathname: '/house',
-      query: {
-        id
-      }
+      query: { id }
     });
   }
 
@@ -45,4 +43,4 @@ const Hot: React.FC<HotProps> = ({
   )
 }
 
-export default memo(Hot)
+export default Hot

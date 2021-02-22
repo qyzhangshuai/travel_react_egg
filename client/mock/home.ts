@@ -2,17 +2,20 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-09 16:01:12
- * @LastEditTime: 2021-02-09 16:03:48
+ * @LastEditTime: 2021-02-22 22:41:42
  * @LastEditors: zs
  */
+import { mockPrefix } from '../src/config/apis'
+
 export default {
-  'post /api/commons/citys': (req, res) => {
+  [`get ${mockPrefix}/commons/citys`]: (req, res) => {
     res.json({
       status: 200,
       data: [[{ label: '杭州', value: '10001' }, { label: '苏州', value: '10002' }]]
     });
   },
-  'post /api/house/hot': (req, res) => {
+
+  [`get ${mockPrefix}/house/hot`]: (req, res) => {
     res.json({
       status: 200,
       data: [

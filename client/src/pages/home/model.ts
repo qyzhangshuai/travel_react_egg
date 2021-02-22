@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-09 10:34:27
- * @LastEditTime: 2021-02-09 11:23:38
+ * @LastEditTime: 2021-02-22 22:00:51
  * @LastEditors: zs
  */
 import modelExtend from 'dva-model-extend'
@@ -15,16 +15,39 @@ const namespace = 'home'
 const HomeModel: HomeModelType = {
   namespace,
   state: {
-    userInfo: '',
+    cityArr: [],
+    houseArr: []
+  },
+  subscriptions: {
+    setup({ dispatch, history }) {
+      return history.listen(({ pathname }) => {
+        if (/^\/home/g.test(pathname)) {
+          // 请求城市 以及 请求 最热民宿
+          dispatch({ type: 'getCity' });
+          dispatch({ type: 'getHotHouse' });
+        }
+      });
+    },
   },
   effects: {
-    *getUserInfo({ payload }, { call, put }) {
-      const response = yield call(homeService.getLoginInfo, { ...payload, name: 'test' });
-      if (response.status === 'ok') {
+    *getCity(_, { call, put }) {
+      const { success, data } = yield call(homeService.getCity);
+      if (success && data) {
         yield put({
-          type: 'save',
+          type: 'updateState',
           payload: {
-            userInfo: response.data,
+            cityArr: data,
+          },
+        });
+      }
+    },
+    *getHotHouse(_, { call, put }) {
+      const { success, data } = yield call(homeService.getHotHouse);
+      if (success && data) {
+        yield put({
+          type: 'updateState',
+          payload: {
+            houseArr: data,
           },
         });
       }
@@ -40,23 +63,10 @@ const HomeModel: HomeModelType = {
     // },
     // 启用 immer 之后
     save(state, action) {
-      state.userInfo = action.payload;
+      state.cityArr = action.payload;
     },
   },
-  subscriptions: {
-    setup({ dispatch, history }) {
-      return history.listen(({ pathname }) => {
-        const reg = /^\/login/g;
-        if (reg.test(pathname)) {
-          dispatch({
-            type: 'getUserInfo',
-            payload: {},
-          });
-        }
-      });
-    },
-  },
+
 }
 
 export default modelExtend(commonModel, HomeModel)
-

@@ -2,10 +2,10 @@
  * @description: POST导出下载文件方法
  * @author: zs
  * @Date: 2021-02-11 08:33:20
- * @LastEditTime: 2021-02-11 08:50:16
+ * @LastEditTime: 2021-02-22 21:41:43
  * @LastEditors: zs
  */
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { message } from 'antd';
 import storage from './storage'
 import { prefix } from '@/config';
@@ -16,7 +16,7 @@ const defaultHeaders = {
   'Content-Type': 'application/json; charset=utf-8',
 }
 
-export default function downloadFile(options, name = 'file.xlsx') {
+export default function downloadFile(options: AxiosRequestConfig, name: string = 'file.xlsx') {
   const token = storage.getItem(`${prefix}-token`);
   return axios({
     method: 'POST',
