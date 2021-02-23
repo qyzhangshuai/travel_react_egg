@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-08 11:43:15
- * @LastEditTime: 2021-02-22 21:43:32
+ * @LastEditTime: 2021-02-23 09:28:17
  * @LastEditors: zs
  */
 import { defineConfig } from 'umi';
@@ -25,7 +25,6 @@ export default defineConfig({
     'process.env.ENV': 'dev',
     'process.env.version': version,
   },
-  // devtool: false, // 禁用 sourcemap,增量编译提速
   dynamicImport: {},
   // dynamicImport:{
   //   loading: '@/components/loading',

@@ -4,10 +4,12 @@ import { Toast } from 'antd-mobile'
 import storage from './storage'
 import { prefix } from '@/config';
 
-type RequestPromise<T> = Promise<Partial<AxiosResponse<T>> & {
+type RequestPromise<T> = Promise<Partial<Omit<AxiosResponse<T>, 'data'>> & {
   success: boolean,
   message: string,
   statusCode: number,
+  // const data = Array.isArray(response.data) ? response.data : (response.data.data || null)
+  data: any // 因为返回的data我们做了处理
 }>
 
 type RequestResponse = {

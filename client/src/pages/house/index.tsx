@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-22 22:10:31
- * @LastEditTime: 2021-02-22 23:27:30
+ * @LastEditTime: 2021-02-23 11:36:07
  * @LastEditors: zs
  */
 import React, { useEffect, useState } from 'react'
@@ -22,8 +22,7 @@ const House: React.FC = () => {
   const [comments, setComments] = useState([]) // 评论列表
   // @ts-ignore
   const { query } = useLocation();
-  // const {} = useHttpHook()
-
+  const [result, getBanner, bannerLoading] = useHttpHook('xx')
 
   useEffect(() => {
     if (query?.id) {
