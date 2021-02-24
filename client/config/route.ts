@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-08 13:51:39
- * @LastEditTime: 2021-02-22 22:10:06
+ * @LastEditTime: 2021-02-24 16:05:46
  * @LastEditors: zs
  */
 export default [
@@ -12,6 +12,9 @@ export default [
     routes: [
       {
         path: '/home',
+        wrappers: [
+          '@/pages/auth',
+        ],
         component: '@/pages/home'
       },
       {
@@ -25,6 +28,9 @@ export default [
       {
         path: '/user',
         component: '@/pages/user'
+      },
+      {
+        component: '@/pages/notFound'
       },
     ]
   },
