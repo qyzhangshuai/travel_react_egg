@@ -1,3 +1,10 @@
+/**
+ * @description: 图片懒加载
+ * @author: zs
+ * @Date: 2021-02-25 10:25:31
+ * @LastEditTime: 2021-02-25 18:16:59
+ * @LastEditors: zs
+ */
 import { useEffect } from 'react';
 import { isEmpty } from 'project-libs';
 
@@ -9,16 +16,17 @@ import { isEmpty } from 'project-libs';
  * @param {*} callback 
  * @param {*} watch 
  */
+type Callback = (entries?: any) => void
 let observer;
-export default function useImgHook(ele, callback, watch = []){
-  useEffect(()=>{
+const defaultCallback = () => null
+export default function useImgHook(ele: string, callback: Callback = defaultCallback, watch = []) {
+  useEffect(() => {
     const nodes = document.querySelectorAll(ele);
-    if(!isEmpty(nodes)){
-      observer = new IntersectionObserver((entries)=>{
+    if (!isEmpty(nodes)) {
+      observer = new IntersectionObserver((entries) => {
         callback && callback(entries);
         entries.forEach(item => {
-          // console.log(item)
-          if(item.isIntersecting){
+          if (item.isIntersecting) {
             const dataSrc = item.target.getAttribute('data-src');
             item.target.setAttribute('src', dataSrc);
             observer.unobserve(item.target);
@@ -31,7 +39,7 @@ export default function useImgHook(ele, callback, watch = []){
     }
 
     return () => {
-      if(!isEmpty(nodes) && observer){
+      if (!isEmpty(nodes) && observer) {
         observer.disconnect();
       }
     }
