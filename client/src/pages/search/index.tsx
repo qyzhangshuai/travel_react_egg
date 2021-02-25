@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-25 13:53:14
- * @LastEditTime: 2021-02-25 18:24:48
+ * @LastEditTime: 2021-02-25 20:27:21
  * @LastEditors: zs
  */
 import { useState, useEffect, useRef } from 'react';
@@ -11,16 +11,13 @@ import { useHttpHook, useObserverHook, useImgHook, useValues } from '@/hooks';
 import { useLocation } from 'umi';
 import { ShowLoading } from '@/components';
 import { CommonEnum } from '@/constants';
-
 import styles from './index.less';
-interface SearchProps {
-}
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const imgClassName = 'search-item-img'
 
-const Search: React.FC<SearchProps> = ({
+const Search: React.FC<{}> = ({
 }) => {
 
 	const divRef = useRef<ListView>()
@@ -36,7 +33,6 @@ const Search: React.FC<SearchProps> = ({
 		...CommonEnum.PAGE,
 	})
 	const [showLoading, setShowLoading] = useState(true); // 是不是取完了，默认没有
-	const [houseSubmitName, setHouseSubmitName] = useState('');
 
 	const [houses, getHouseLists, loading] = useHttpHook('/api/proxy/house/search', {
 		defaultQuery: true,
@@ -47,6 +43,21 @@ const Search: React.FC<SearchProps> = ({
 			endTime: query?.endTime + ' 23:59:59'
 		}
 	});
+	// 卸载组件时，清空状态
+	useEffect(() => {
+		return () => {
+			setHouseState({
+				houseLists: [],
+				dataSource: new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 }),
+			})
+			setParamsState({
+				houseName: '',
+				...CommonEnum.PAGE,
+			})
+			setShowLoading(true)
+		}
+	}, [])
+
 	// 这是放数据用的
 	useEffect(() => {
 		if (!houses || !Array.isArray(houses)) return
@@ -71,12 +82,17 @@ const Search: React.FC<SearchProps> = ({
 	};
 
 	const _handleSubmit = (value) => {
-		setParamsState({ houseName: value, ...CommonEnum.PAGE });
-		setHouseSubmitName(value);
+		const data = { houseName: value, pageNum: 1 }
+		setHouseState({
+			houseLists: [],
+			dataSource: new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 }),
+		})
+		setParamsState(data);
+		getHouseLists(data)
 	};
 
 	const handleCancle = () => {
-		_handleSubmit('');
+		setParamsState({ houseName: '' })
 	};
 
 	const handleSubmit = (value) => {
@@ -84,6 +100,8 @@ const Search: React.FC<SearchProps> = ({
 	};
 
 	const handleEndReached = () => {
+		// showLoading为false说明数据已经全部加载完毕，所以我们不需要再请求数据了
+		if (!showLoading) return
 		// 未加载
 		if (!loading) {
 			const pageNum = paramsState.pageNum + 1
@@ -97,9 +115,7 @@ const Search: React.FC<SearchProps> = ({
 			key={`${sectionID}-${rowID}`}
 			style={{
 				backgroundColor: '#F5F5F9',
-				height: 8,
-				borderTop: '1px solid #ECECED',
-				borderBottom: '1px solid #ECECED',
+				height: 5,
 			}}
 		/>
 	);
@@ -115,18 +131,6 @@ const Search: React.FC<SearchProps> = ({
 			</div>
 		);
 	};
-
-	const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
-	const getRowData = (dataBlob, _sectionID, rowID) => dataBlob[rowID];
-
-	const handleSource = () => {
-		return new ListView.DataSource({
-			getRowData,
-			getSectionHeaderData: getSectionData,
-			rowHasChanged: (row1, row2) => row1 !== row2,
-			sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
-		});
-	}
 
 	return (
 		<div className={styles.search_page}>
