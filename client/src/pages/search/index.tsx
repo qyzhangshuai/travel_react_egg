@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-25 13:53:14
- * @LastEditTime: 2021-02-26 16:59:26
+ * @LastEditTime: 2021-02-26 17:37:46
  * @LastEditors: zs
  */
 import { useState, useEffect, useRef } from 'react';
@@ -12,6 +12,7 @@ import { useLocation } from 'umi';
 import { ShowLoading } from '@/components';
 import { CommonEnum } from '@/constants';
 import styles from './index.less';
+import Skeletons from './Skeletons'
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
@@ -144,11 +145,11 @@ const Search: React.FC<{}> = ({
 			/>
 			{/**搜索结果 */}
 			<div className={styles.result}>
+			<Skeletons />
 				{
 					(!houseState.houseLists || !houseState.houseLists.length) && showLoading ? (
 						// 首次渲染时的骨架屏组件
-						
-						null
+						<Skeletons />
 					) : (
 							<ListView
 								// ref={el => divRef.current = el}
