@@ -2,12 +2,12 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-25 13:53:14
- * @LastEditTime: 2021-02-25 20:27:21
+ * @LastEditTime: 2021-02-26 16:59:26
  * @LastEditors: zs
  */
 import { useState, useEffect, useRef } from 'react';
-import { SearchBar, ActivityIndicator, ListView } from 'antd-mobile';
-import { useHttpHook, useObserverHook, useImgHook, useValues } from '@/hooks';
+import { SearchBar, ListView } from 'antd-mobile';
+import { useHttpHook, useImgHook, useValues } from '@/hooks';
 import { useLocation } from 'umi';
 import { ShowLoading } from '@/components';
 import { CommonEnum } from '@/constants';
@@ -75,7 +75,7 @@ const Search: React.FC<{}> = ({
 		}
 	}, [houses])
 
-	useImgHook(`.${imgClassName}`, (enties) => { }, null);
+	useImgHook(`.${imgClassName}`);
 
 	const handleChange = (value: string) => {
 		setParamsState({ houseName: value });
@@ -144,20 +144,29 @@ const Search: React.FC<{}> = ({
 			/>
 			{/**搜索结果 */}
 			<div className={styles.result}>
-				<ListView
-					ref={el => divRef.current = el}
-					dataSource={houseState.dataSource}
-					renderFooter={() => <ShowLoading showLoading={showLoading} />}
-					renderRow={row}
-					renderSeparator={separator}
-					className="am-list"
-					pageSize={4}
-					useBodyScroll
-					onScroll={() => { console.log('scroll'); }}
-					scrollRenderAheadDistance={500}
-					onEndReached={handleEndReached}
-					onEndReachedThreshold={10}
-				/>
+				{
+					(!houseState.houseLists || !houseState.houseLists.length) && showLoading ? (
+						// 首次渲染时的骨架屏组件
+						
+						null
+					) : (
+							<ListView
+								// ref={el => divRef.current = el}
+								dataSource={houseState.dataSource}
+								renderFooter={() => <ShowLoading showLoading={showLoading} />}
+								renderRow={row}
+								renderSeparator={separator}
+								className="am-list"
+								pageSize={4}
+								useBodyScroll
+								// onScroll={() => { console.log('scroll'); }}
+								scrollRenderAheadDistance={500}
+								onEndReached={handleEndReached}
+								onEndReachedThreshold={10}
+							/>
+						)
+				}
+
 			</div>
 
 		</div>

@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-06 20:30:01
- * @LastEditTime: 2021-02-08 19:17:21
+ * @LastEditTime: 2021-02-26 10:10:20
  * @LastEditors: zs
  */
 import { FC } from 'react'
@@ -23,7 +23,7 @@ const BasicLayout: FC<BasicLayoutProps> = (props) => {
   }
 
   return (
-    <div>
+    <div style={{ height: '100%' }}>
       <MenuBar
         show={paths.includes(location.pathname)}
         pathname={location.pathname}
