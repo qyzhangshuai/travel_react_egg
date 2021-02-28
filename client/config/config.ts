@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-08 11:43:15
- * @LastEditTime: 2021-02-28 10:48:39
+ * @LastEditTime: 2021-02-28 10:53:14
  * @LastEditors: zs
  */
 import { defineConfig } from 'umi';
@@ -47,7 +47,7 @@ export default defineConfig({
   //     'import',
   //     {
   //       'libraryName': 'z-react-ui',
-  //       'libraryDirectory': 'lib',
+  //       'libraryDirectory': 'es',
   //       'style': true
   //     },
   //     "z-react-ui"
