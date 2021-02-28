@@ -34,8 +34,7 @@
     "project-libs": "^1.1.5",
     "query-string": "^6.13.8",
     "react-icons": "^4.2.0",
-    "umi": "^3.3.7",
-    "z-react-ui": "^1.0.8"
+    "umi": "^3.3.7"
   },
   "devDependencies": {
     "@types/react": "^16.9.0",

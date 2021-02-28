@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-08 11:43:15
- * @LastEditTime: 2021-02-28 10:43:16
+ * @LastEditTime: 2021-02-28 10:48:39
  * @LastEditors: zs
  */
 import { defineConfig } from 'umi';
@@ -42,17 +42,17 @@ export default defineConfig({
   ],
   routes: routes,
   fastRefresh: {},
-  extraBabelPlugins: [
-    [
-      'import',
-      {
-        'libraryName': 'z-react-ui',
-        'libraryDirectory': 'lib',
-        'style': true
-      },
-      "z-react-ui"
-    ],
-  ],
+  // extraBabelPlugins: [
+  //   [
+  //     'import',
+  //     {
+  //       'libraryName': 'z-react-ui',
+  //       'libraryDirectory': 'lib',
+  //       'style': true
+  //     },
+  //     "z-react-ui"
+  //   ],
+  // ],
   // proxy: {
   //   '/api/proxy': {
   //     'target': 'http://127.0.0.1:7001/',
