@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-08 13:51:39
- * @LastEditTime: 2021-02-24 16:05:46
+ * @LastEditTime: 2021-02-25 14:07:15
  * @LastEditors: zs
  */
 export default [
@@ -20,6 +20,10 @@ export default [
       {
         path: '/house',
         component: '@/pages/house'
+      },
+      {
+        path: '/search',
+        component: '@/pages/search'
       },
       {
         path: '/order',

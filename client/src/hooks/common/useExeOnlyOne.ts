@@ -2,16 +2,16 @@
  * @description 仅执行一次
  * @author zs
  * @Date 2021-01-20 15:34:26
- * @LastEditTime 2021-01-20 16:03:14
- * @LastEditors zs
+ * @LastEditTime: 2021-02-26 16:01:30
+ * @LastEditors: zs
  */
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, DependencyList } from 'react'
 
 // callback 回传一个参数，执行callback后，关闭调
 interface Callback {
-    (close: any): void | VoidFunction
+    (close: React.MutableRefObject<boolean>): void | VoidFunction
 }
-export default function useExeOnlyOne(callback: Callback, deps: any[]) {
+export default function useExeOnlyOne(callback: Callback, deps: DependencyList = []) {
     const isFirstRef = useRef(true)
     useEffect(() => {
         if (!isFirstRef.current) return

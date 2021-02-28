@@ -2,12 +2,12 @@
  * @description 更新
  * @author zs
  * @Date 2020-05-26 10:34:17
- * @LastEditTime 2020-05-26 10:34:40
- * @LastEditors zs
+ * @LastEditTime: 2021-02-25 14:33:07
+ * @LastEditors: zs
  */
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, DependencyList } from 'react';
 
-const useUpdateEffect: typeof useEffect = (effect, deps) => {
+const useUpdateEffect: typeof useEffect = (effect, deps: DependencyList = []) => {
     const isMounted = useRef(false);
 
     useEffect(() => {

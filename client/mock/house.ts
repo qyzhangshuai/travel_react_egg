@@ -2,16 +2,27 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-22 22:35:26
- * @LastEditTime: 2021-02-22 22:43:31
+ * @LastEditTime: 2021-02-26 16:48:33
  * @LastEditors: zs
  */
 import { mockPrefix } from '../src/config/apis'
 
 export default {
-  [`post ${mockPrefix}/house/search`]: (req, res) => {
+  [`get ${mockPrefix}/house/search`]: (req, res) => {
     setTimeout(() => {
       let data;
-      if (req.body.pageNum < 4) {
+      if (req.query?.pageNum == 2) {
+        data = [
+          {
+            id: 11,
+            img: 'http://img3.mukewang.com/szimg/5d1032ab08719e0906000338-360-202.jpg',
+            title: '东城民宿',
+            info: '东城区交通方便',
+            price: '100'
+          },
+        ]
+      }
+      else if (req.query?.pageNum < 4) {
         data = [
           {
             id: 1,
@@ -64,6 +75,20 @@ export default {
           },
           {
             id: 8,
+            img: 'http://img1.mukewang.com/szimg/5a1f65a900015d1505400300-360-202.jpg',
+            title: '老城民宿',
+            info: '老城区风景秀美',
+            price: '220'
+          },
+          {
+            id: 9,
+            img: 'http://img1.mukewang.com/szimg/5a1f65a900015d1505400300-360-202.jpg',
+            title: '老城民宿',
+            info: '老城区风景秀美',
+            price: '220'
+          },
+          {
+            id: 10,
             img: 'http://img1.mukewang.com/szimg/5a1f65a900015d1505400300-360-202.jpg',
             title: '老城民宿',
             info: '老城区风景秀美',

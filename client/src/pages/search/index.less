@@ -1,0 +1,54 @@
+@import '~@/style/mixin.less';
+
+.search_page {
+  height: calc(100% - 40px);
+  background-color: #f5f5f9;
+  :global {
+    .am-search {
+      position: fixed;
+      width: 100%;
+      left: 0;
+      top: 0;
+      z-index: 1;
+    }
+    .am-list-body::before {
+      height: 0!important;
+    }
+  }
+  .result {
+    width: 100%;
+    margin-top: 40px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #f5f5f9;
+    .item {
+      .flex(row, flex-start);
+      height: 100px;
+      padding: 6px;
+      background: #fff;
+      margin-bottom: 6px;
+      img {
+        width: 120px;
+        height: 86px;
+        object-fit: cover;
+      }
+      &_right {
+        .flex(column, space-between);
+        flex: 1;
+        height: 90px;
+        margin-left: 16px;
+        .title,
+        .price {
+          width: 100%;
+        }
+        .title {
+          font-size: 20px;
+        }
+        .price {
+          color: #ff4d6a;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

@@ -2,12 +2,13 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-08 11:43:15
- * @LastEditTime: 2021-02-28 10:40:17
+ * @LastEditTime: 2021-02-28 10:43:16
  * @LastEditors: zs
  */
 import { defineConfig } from 'umi';
 import px2rem from 'postcss-plugin-px2rem';
 import HardSourceWebpackPlugin from 'hard-source-webpack-plugin'
+import AntdDayjsWebpackPlugin from 'antd-dayjs-webpack-plugin';
 import routes from './route'
 import theme from './utils/theme.config'
 import version from './utils/version'
@@ -25,10 +26,10 @@ export default defineConfig({
     'process.env.ENV': 'dev',
     'process.env.version': version,
   },
-  dynamicImport: {},
-  // dynamicImport:{
-  //   loading: '@/components/loading',
-  // },
+  // dynamicImport: {},
+  dynamicImport:{
+    loading: '@/components/Loading',
+  },
   extraPostCSSPlugins: [
     //https://www.npmjs.com/package/postcss-plugin-px2rem
     px2rem({
@@ -51,16 +52,16 @@ export default defineConfig({
       },
       "z-react-ui"
     ],
-  ]
+  ],
   // proxy: {
   //   '/api/proxy': {
   //     'target': 'http://127.0.0.1:7001/',
   //     'changeOrigin': true
   //   }
   // },
-  // chainWebpack(memo) {
-  //   memo.plugin('HardSourceWebpackPlugin').use(new HardSourceWebpackPlugin())
-  //   // antd组件库
-  //   // memo.plugin('AntdDayjsWebpackPlugin').use(new AntdDayjsWebpackPlugin());
-  // },
+  chainWebpack(memo) {
+    //   memo.plugin('HardSourceWebpackPlugin').use(new HardSourceWebpackPlugin())
+    // antd组件库
+    memo.plugin('AntdDayjsWebpackPlugin').use(new AntdDayjsWebpackPlugin());
+  },
 });
