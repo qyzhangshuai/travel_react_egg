@@ -11,8 +11,12 @@
       top: 0;
       z-index: 1;
     }
-    .am-list-body::before {
-      height: 0!important;
+    .am-list-body::before,
+    .am-list-body::after {
+      height: 0 !important;
+    }
+    .am-list-footer {
+      padding: 0 !important;
     }
   }
   .result {
@@ -37,6 +41,7 @@
         flex: 1;
         height: 90px;
         margin-left: 16px;
+        padding: 10px 0;
         .title,
         .price {
           width: 100%;

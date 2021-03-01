@@ -3,8 +3,8 @@
   "scripts": {
     "start": "umi dev",
     "build": "umi build",
-    "build:test": "cross-env ENV=test UMI_ENV=test npm run build",
-    "build:prod": "cross-env ENV=prod UMI_ENV=prod npm run build",
+    "build:test": "cross-env ENV=test npm run build",
+    "build:prod": "cross-env ENV=prod npm run build",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",

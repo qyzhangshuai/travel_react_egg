@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-08 11:43:15
- * @LastEditTime: 2021-02-28 10:53:14
+ * @LastEditTime: 2021-03-01 14:12:11
  * @LastEditors: zs
  */
 import { defineConfig } from 'umi';
@@ -12,6 +12,14 @@ import AntdDayjsWebpackPlugin from 'antd-dayjs-webpack-plugin';
 import routes from './route'
 import theme from './utils/theme.config'
 import version from './utils/version'
+
+const ENV = process.env.ENV || 'dev'
+const isDev = ENV === 'dev'
+const publicPathObj = {
+  'dev': '/',
+  'test': '/dist',
+  'prod': '/dist'
+}
 
 export default defineConfig({
   nodeModulesTransform: {
@@ -23,11 +31,12 @@ export default defineConfig({
     immer: true
   },
   define: {
-    'process.env.ENV': 'dev',
+    'process.env.ENV': ENV,
     'process.env.version': version,
   },
-  // dynamicImport: {},
-  dynamicImport:{
+  devtool: isDev ? 'cheap-module-eval-source-map' : false,
+  publicPath: publicPathObj[ENV],
+  dynamicImport: {
     loading: '@/components/Loading',
   },
   extraPostCSSPlugins: [

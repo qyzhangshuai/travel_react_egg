@@ -2,7 +2,7 @@
  * @description: 搜索骨架屏
  * @author: zs
  * @Date: 2021-02-26 17:29:15
- * @LastEditTime: 2021-02-26 17:39:53
+ * @LastEditTime: 2021-03-01 10:46:01
  * @LastEditors: zs
  */
 import { useState } from "react"
@@ -15,11 +15,11 @@ const imgClassName = 'search-item-img'
 
 const Skeletons: React.FC<{}> = ({
 }) => {
-  const [state, setState] = useState(Array(3).fill(1));
+  const [state] = useState(Array(7).fill(1));
 
   return (
 
-    <div className={styles.result}>
+    <>
       {
         state.map((item, index) => (
           <div className={styles.item} key={index}>
@@ -31,7 +31,7 @@ const Skeletons: React.FC<{}> = ({
           </div>
         ))
       }
-    </div>
+    </>
 
   )
 }

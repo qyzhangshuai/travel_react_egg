@@ -2,10 +2,11 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-25 14:09:32
- * @LastEditTime: 2021-02-25 14:16:20
+ * @LastEditTime: 2021-03-01 10:45:26
  * @LastEditors: zs
  */
-import { memo } from "react"
+import { FC, memo } from "react"
+import { ActivityIndicator } from 'antd-mobile'
 import styles from './index.less'
 
 interface ShowLoadingProps {
@@ -14,14 +15,17 @@ interface ShowLoadingProps {
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const ShowLoading: React.FC<ShowLoadingProps> = ({ showLoading = true }) => {
+const ShowLoading: React.FC<ShowLoadingProps> = ({
+    showLoading = true,
+}) => {
 
     return (
-        <div>
+        <>
             {showLoading
-                ? <div className={styles.loading_info}>loading</div>
-                : <div className={styles.loading_info}>没有数据了~</div>}
-        </div>
+                ? <ActivityIndicator className={styles.loading_status} />
+                : <div className={styles.loading_info}>没有数据了~</div>
+            }
+        </>
     )
 }
 

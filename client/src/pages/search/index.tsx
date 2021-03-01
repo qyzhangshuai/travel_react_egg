@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-25 13:53:14
- * @LastEditTime: 2021-02-26 17:37:46
+ * @LastEditTime: 2021-03-01 13:53:22
  * @LastEditors: zs
  */
 import { useState, useEffect, useRef } from 'react';
@@ -21,7 +21,7 @@ const imgClassName = 'search-item-img'
 const Search: React.FC<{}> = ({
 }) => {
 
-	const divRef = useRef<ListView>()
+	const listRef = useRef<ListView>()
 
 	// @ts-ignore
 	const { query } = useLocation();
@@ -76,20 +76,26 @@ const Search: React.FC<{}> = ({
 		}
 	}, [houses])
 
-	useImgHook(`.${imgClassName}`);
+	const [throttleLazyload] = useImgHook(`.${imgClassName}`);
 
 	const handleChange = (value: string) => {
 		setParamsState({ houseName: value });
 	};
 
-	const _handleSubmit = (value) => {
+	const _handleSubmit = async (value) => {
+		listRef.current?.scrollTo(0, 0)
 		const data = { houseName: value, pageNum: 1 }
+		// 搜索前，先将本次数据清空
 		setHouseState({
 			houseLists: [],
 			dataSource: new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 }),
 		})
+		setShowLoading(true)
 		setParamsState(data);
-		getHouseLists(data)
+		// 请求
+		const { success } = await getHouseLists(data)
+		if (!success) return
+		throttleLazyload()
 	};
 
 	const handleCancle = () => {
@@ -127,12 +133,11 @@ const Search: React.FC<{}> = ({
 				<img alt='img' className={imgClassName} src={require('@/assets/blank.png')} data-src={rowData.img} />
 				<div className={styles.item_right}>
 					<div className={styles.title}>{rowData.title}</div>
-					<div className={styles.price}>{rowData.price}</div>
+					<div className={styles.price}>￥{rowData.price}</div>
 				</div>
 			</div>
 		);
 	};
-
 	return (
 		<div className={styles.search_page}>
 			{/**顶部搜索栏 */}
@@ -145,14 +150,13 @@ const Search: React.FC<{}> = ({
 			/>
 			{/**搜索结果 */}
 			<div className={styles.result}>
-			<Skeletons />
 				{
 					(!houseState.houseLists || !houseState.houseLists.length) && showLoading ? (
 						// 首次渲染时的骨架屏组件
 						<Skeletons />
 					) : (
 							<ListView
-								// ref={el => divRef.current = el}
+								ref={dom => listRef.current = dom}
 								dataSource={houseState.dataSource}
 								renderFooter={() => <ShowLoading showLoading={showLoading} />}
 								renderRow={row}
@@ -160,7 +164,6 @@ const Search: React.FC<{}> = ({
 								className="am-list"
 								pageSize={4}
 								useBodyScroll
-								// onScroll={() => { console.log('scroll'); }}
 								scrollRenderAheadDistance={500}
 								onEndReached={handleEndReached}
 								onEndReachedThreshold={10}
