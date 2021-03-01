@@ -2,11 +2,11 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-22 22:23:11
- * @LastEditTime: 2021-02-22 23:07:24
+ * @LastEditTime: 2021-03-01 17:48:41
  * @LastEditors: zs
  */
-import React, { useEffect } from 'react'
-import { Carousel } from 'antd-mobile';
+import { useState, useEffect } from 'react';
+import AwesomeSwiper from 'react-awesome-swiper';
 import styles from '../index.less'
 
 interface BannerProps {
@@ -20,26 +20,24 @@ const Banner: React.FC<BannerProps> = ({
   banner = [],
 }) => {
 
-  useEffect(() => {
-
-  }, [])
+  const [config] = useState({
+    loop: true,
+    autoplay: {
+      delay: 3000
+    },
+    lazy: true,
+    pagination: {
+      el: '.swiper-pagination'
+    }
+  })
 
   return (
-    <Carousel
-      autoplay={false}
-      infinite
-      className={styles.banner}
-      beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-      afterChange={index => console.log('slide to', index)}
-    >
-      <div className={styles.swiper_wrapper}>
-        {banner?.map(item => (
-          <div className={styles.swiper_slide} key={item.id}>
-            <img alt='banner' src={item.url} />
-          </div>
-        ))}
+    <AwesomeSwiper className={styles.banner} config={config}>
+      <div className={'swiper-wrapper'}>
+        {banner?.map((item, index) => <div className="swiper-slide" key={index}><img alt='banner' src={item} /></div>)}
       </div>
-    </Carousel>
+      <div className='swiper-pagination' />
+    </AwesomeSwiper>
   )
 }
 

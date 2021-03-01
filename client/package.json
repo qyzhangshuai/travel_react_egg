@@ -33,6 +33,7 @@
     "lodash": "^4.17.20",
     "project-libs": "^1.1.5",
     "query-string": "^6.13.8",
+    "react-awesome-swiper": "^1.4.16",
     "react-icons": "^4.2.0",
     "umi": "^3.3.7"
   },

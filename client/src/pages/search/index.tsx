@@ -2,15 +2,16 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-25 13:53:14
- * @LastEditTime: 2021-03-01 13:53:22
+ * @LastEditTime: 2021-03-01 14:25:15
  * @LastEditors: zs
  */
 import { useState, useEffect, useRef } from 'react';
 import { SearchBar, ListView } from 'antd-mobile';
-import { useHttpHook, useImgHook, useValues } from '@/hooks';
 import { useLocation } from 'umi';
+import { useHttpHook, useImgHook, useValues } from '@/hooks';
 import { ShowLoading } from '@/components';
 import { CommonEnum } from '@/constants';
+import { search } from '@/config/apis'
 import styles from './index.less';
 import Skeletons from './Skeletons'
 
@@ -35,7 +36,7 @@ const Search: React.FC<{}> = ({
 	})
 	const [showLoading, setShowLoading] = useState(true); // 是不是取完了，默认没有
 
-	const [houses, getHouseLists, loading] = useHttpHook('/api/proxy/house/search', {
+	const [houses, getHouseLists, loading] = useHttpHook(search.getSearch, {
 		defaultQuery: true,
 		data: {
 			...paramsState,
