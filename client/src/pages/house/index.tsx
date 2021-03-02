@@ -2,9 +2,10 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-22 22:10:31
- * @LastEditTime: 2021-03-02 10:51:47
+ * @LastEditTime: 2021-03-02 18:21:25
  * @LastEditors: zs
  */
+import { FC } from 'react'
 import { useSelector } from 'umi'
 import { shallowEqual } from 'react-redux'
 import Banner from './Banner'
@@ -17,9 +18,8 @@ import styles from './index.less'
 
 const namespace = 'house'
 
-const House: React.FC = () => {
+const House: FC = () => {
   const { banner, info, comments } = useSelector((state) => state[namespace], shallowEqual)
-
   return (
     <div className={styles.house_page}>
       {/**banner */}

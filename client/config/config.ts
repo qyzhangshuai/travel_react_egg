@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-08 11:43:15
- * @LastEditTime: 2021-03-01 14:12:11
+ * @LastEditTime: 2021-03-02 20:35:23
  * @LastEditors: zs
  */
 import { defineConfig } from 'umi';
@@ -12,13 +12,12 @@ import AntdDayjsWebpackPlugin from 'antd-dayjs-webpack-plugin';
 import routes from './route'
 import theme from './utils/theme.config'
 import version from './utils/version'
-
 const ENV = process.env.ENV || 'dev'
 const isDev = ENV === 'dev'
 const publicPathObj = {
   'dev': '/',
-  'test': '/dist',
-  'prod': '/dist'
+  'test': '/dist/',
+  'prod': '/dist/'
 }
 
 export default defineConfig({
@@ -68,9 +67,27 @@ export default defineConfig({
   //     'changeOrigin': true
   //   }
   // },
+  externals: {
+    lodash: "_",
+  },
+  headScripts: [
+    "https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.min.js",
+  ].filter(Boolean),
+  ignoreMomentLocale: true,
+  analyze: {
+    analyzerMode: 'server',
+    analyzerPort: 8888,
+    openAnalyzer: true,
+    // generate stats file while ANALYZE_DUMP exist
+    generateStatsFile: false,
+    statsFilename: 'stats.json',
+    logLevel: 'info',
+    defaultSizes: 'parsed', // stat  // gzip
+  },
   chainWebpack(memo) {
     //   memo.plugin('HardSourceWebpackPlugin').use(new HardSourceWebpackPlugin())
-    // antd组件库
+    //  插件
     memo.plugin('AntdDayjsWebpackPlugin').use(new AntdDayjsWebpackPlugin());
+
   },
 });
