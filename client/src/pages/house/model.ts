@@ -2,13 +2,15 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-09 10:34:27
- * @LastEditTime: 2021-03-01 15:46:29
+ * @LastEditTime: 2021-03-02 10:27:18
  * @LastEditors: zs
  */
 import modelExtend from 'dva-model-extend'
 import { commonModel } from '@/models/common'
 import { houseService } from '@/service'
 import { HouseModelType } from '@/types/store/house'
+import { CommonEnum } from '@/constants'
+import { RootState } from '@/types/store'
 
 const namespace = 'house'
 
@@ -17,7 +19,8 @@ const HouseModel: HouseModelType = {
   state: {
     banner: [],
     info: {},
-    comments: []
+    comments: [],
+    params: CommonEnum.PAGE,
   },
   subscriptions: {
     setup({ dispatch, history }) {
@@ -33,23 +36,36 @@ const HouseModel: HouseModelType = {
     *getHouseDetail(_, { call, put }) {
       const { success, data } = yield call(houseService.getHouseDetail);
       if (success && data) {
-        const { banner = {}, info = {} } = data || {}
+        const { banner = [], info = {} } = data || {}
         yield put({
           type: 'updateState',
           payload: { banner, info }
         });
       }
     },
-    *getHouseComments(_, { call, put }) {
-      const { success, data } = yield call(houseService.getHouseComments);
+    *getHouseComments({ payload = {} }, { call, put, select }) {
+      const { params, comments } = yield select((_: RootState) => _[namespace])
+      const { pageNum, id } = payload
+      const { success, data } = yield call(houseService.getHouseComments, {
+        ...params,
+        id,
+        pageNum: pageNum || params.pageNum
+      });
       if (success && data) {
         yield put({
           type: 'updateState',
           payload: {
-            comments: data,
+            comments: Array.isArray(comments) && !comments.length ? data : comments.concat(data),
+            params: {
+              ...params,
+              pageNum: pageNum || params.pageNum
+            },
           },
         });
       }
+    },
+    *addCommentsAsync({ payload = {} }, { call, put, select }){
+
     },
 
   },

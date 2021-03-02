@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-03-01 15:34:14
- * @LastEditTime: 2021-03-01 15:42:46
+ * @LastEditTime: 2021-03-02 10:24:39
  * @LastEditors: zs
  */
 import { request } from '@/utils';
@@ -15,4 +15,4 @@ interface GetHouseDetail {
 export const getHouseDetail = (data: GetHouseDetail) => request(house.getHouseDetail, { data })
 
 // 评论
-export const getHouseComments = (data: GetHouseDetail) => request(house.getHouseComments)
+export const getHouseComments = (data: GetHouseDetail) => request(house.getHouseComments, { data })
