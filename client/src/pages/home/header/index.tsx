@@ -2,10 +2,10 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-09 09:35:25
- * @LastEditTime: 2021-02-09 13:59:41
+ * @LastEditTime: 2021-03-14 22:45:39
  * @LastEditors: zs
  */
-import React, { useState, useEffect, memo } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { Link, useDispatch, useSelector } from 'umi';
 import styles from './index.less'
 
@@ -24,7 +24,7 @@ function Header() {
     <div className={styles.header}>
       <div className={styles.header_title} onClick={handleClick}>民宿</div>
       <div className={styles.header_login}>
-        {username ? username : <><Link to='/login'>登录</Link> | <Link to='/register'>注册</Link></>}
+        {username ? username : <><Link  to='/traval/login'>登录</Link> | <Link to='/register'>注册</Link></>}
       </div>
     </div>
   )

@@ -2,14 +2,14 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-08 19:12:27
- * @LastEditTime: 2021-03-14 19:10:15
+ * @LastEditTime: 2021-03-14 22:21:52
  * @LastEditors: zs
  */
 import { useState, useEffect, useMemo } from 'react';
 import { Tabs } from 'antd-mobile';
 import { useSelector } from 'umi'
 import { shallowEqual } from 'react-redux'
-import { useHttpHook, useObserverHook } from '@/hooks';
+import { useImgHook, useBindCreator } from '@/hooks';
 import { CommonEnum } from '@/constants';
 import { isEmpty } from 'project-libs';
 import styles from './index.less'
@@ -29,19 +29,27 @@ const Order: React.FC<OrderProps> = () => {
   const {
     unpayOrders,
     payOrders,
+    type,
   } = useSelector(({ order }: RootState) => order, shallowEqual)
-  const {
-    unpayOrdersLoading,
-    payOrdersLoading,
-  } = useSelector(({ loading }: RootState) => {
+
+  const { fetchOrderLoading } = useSelector(({ loading }: RootState) => {
     return {
-      unpayOrdersLoading: loading.effects[`${namespace}/fetchUnpayOrder`],
-      payOrdersLoading: loading.effects[`${namespace}/fetchPayOrder`]
+      fetchOrderLoading: loading.effects[`${namespace}/fetchOrder`],
     }
   }, shallowEqual)
 
-  const handleChange = (e) => {
+  const { updateState, fetchOrder } = useBindCreator({
+    updateState: (payload) => ({ type: `${namespace}/updateState`, payload }),
+    fetchOrder: (payload) => ({ type: `${namespace}/fetchOrder`, payload })
+  })
 
+  useEffect(() => {
+    fetchOrder({ type })
+  }, [type])
+
+
+  const handleChange = (e) => {
+    updateState({ type: e.sub })
   }
 
   const tabs = useMemo(() => [
@@ -57,16 +65,15 @@ const Order: React.FC<OrderProps> = () => {
           onChange={handleChange}
         >
           <div className='tab'>
-            <Lists orders={unpayOrders} type={0} showLoading={unpayOrdersLoading} />
+            <Lists orders={unpayOrders} type={0} showLoading={type === 0 && fetchOrderLoading} />
           </div>
           <div className='tab'>
-            <Lists orders={payOrders} type={1} showLoading={payOrdersLoading} />
+            <Lists orders={payOrders} type={1} showLoading={type === 1 && fetchOrderLoading} />
           </div>
         </Tabs>
       </div>
     </>
   )
-
 }
 
 export default Order

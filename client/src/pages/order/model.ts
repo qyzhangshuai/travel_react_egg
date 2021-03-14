@@ -2,12 +2,12 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-09 10:34:27
- * @LastEditTime: 2021-03-14 19:06:42
+ * @LastEditTime: 2021-03-14 22:08:47
  * @LastEditors: zs
  */
 import modelExtend from 'dva-model-extend'
 import { commonModel } from '@/models/common'
-import { houseService } from '@/service'
+import { orderService } from '@/service'
 import { OrderModelType } from '@/types/store/order'
 import { CommonEnum } from '@/constants'
 import { RootState } from '@/types/store'
@@ -19,24 +19,66 @@ const HouseModel: OrderModelType = {
   state: {
     unpayOrders: [],
     payOrders: [],
-  },
-  subscriptions: {
-    setup({ dispatch, history }) {
-      return history.listen(({ pathname }) => {
-        if (/^\/house/g.test(pathname)) {
-
-        }
-      });
+    type: 0,
+    unpayPage: {
+      pageNum: 1,
+      pageSize: 10,
     },
+    unpayHasmore: false,
+    payPage: {
+      pageNum: 1,
+      pageSize: 10,
+    },
+    payHasmore: false,
   },
   effects: {
-    *fetchUnpayOrder({ payload = {} }, { call }) {
-      const { success } = yield call(houseService.addCommentsAsync, payload)
-      return { success }
-    },
-    *fetchPayOrder({ payload = {} }, { call }) {
-      const { success } = yield call(houseService.addCommentsAsync, payload)
-      return { success }
+    *fetchOrder({ payload = {} }, { call, put, select }) {
+      const {
+        unpayOrders,
+        payOrders,
+        type: typeAlias,
+        unpayPage,
+        payPage,
+      } = yield select((_: RootState) => _[namespace])
+      const { type, pageNum } = payload
+
+      const typeResult = type || typeAlias
+
+      const params = {
+        ...payload,
+        ...(typeResult === 0 ? unpayPage : payPage),
+        type: typeResult,
+        pageNum: pageNum || (typeResult === 0 ? unpayPage.pageNum : payPage.pageNum)
+      }
+
+      const { success, data } = yield call(orderService.fetchOrder, params)
+      if (success && data) {
+        if (typeResult === 0) {
+          yield put({
+            type: 'updateState',
+            payload: {
+              unpayOrders: [...unpayOrders, ...data],
+              unpayPage: {
+                ...unpayPage,
+                pageNum: pageNum || unpayPage.pageNum
+              },
+              unpayHasmore: data.length < unpayPage.pageSize
+            }
+          })
+        } else {
+          yield put({
+            type: 'updateState',
+            payload: {
+              payOrders: [...payOrders, ...data],
+              payPage: {
+                ...payPage,
+                pageNum: pageNum || payPage.pageNum
+              },
+              payHasmore: data.length < payPage.pageSize
+            }
+          })
+        }
+      }
     },
 
   },

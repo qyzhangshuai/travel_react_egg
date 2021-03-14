@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-08 13:51:39
- * @LastEditTime: 2021-03-14 20:26:55
+ * @LastEditTime: 2021-03-14 22:45:20
  * @LastEditors: zs
  */
 export default [
@@ -48,6 +48,16 @@ export default [
             title: '设置用户',
           }
         ]
+      },
+      {
+        path: '/traval/login',
+        component: '@/pages/login',
+        title: '登录'
+      },
+      {
+        path: '/register',
+        component: '@/pages/register',
+        title: '注册'
       },
       {
         component: '@/pages/notFound',
