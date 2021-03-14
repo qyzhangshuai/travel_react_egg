@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-22 22:35:26
- * @LastEditTime: 2021-03-02 10:59:41
+ * @LastEditTime: 2021-03-14 11:32:04
  * @LastEditors: zs
  */
 import { mockPrefix } from '../src/config/apis'
@@ -127,7 +127,7 @@ export default {
               username: 'user',
             },
             createTime: 1595238771000,
-            info: '房屋很满意'
+            msg: '房屋很满意'
           },
           {
             id: 2,
@@ -136,7 +136,7 @@ export default {
               username: 'user',
             },
             createTime: 1595238771000,
-            info: '空气清新'
+            msg: '空气清新'
           },
           {
             id: 3,
@@ -145,7 +145,7 @@ export default {
               username: 'user',
             },
             createTime: 1595238771000,
-            info: '态度温和'
+            msg: '态度温和'
           },
           {
             id: 4,
@@ -154,7 +154,7 @@ export default {
               username: 'user',
             },
             createTime: 1595238771000,
-            info: '早餐味道美'
+            msg: '早餐味道美'
           },
           {
             id: 5,
@@ -163,7 +163,7 @@ export default {
               username: 'user',
             },
             createTime: 1595238771000,
-            info: '态度温和'
+            msg: '态度温和'
           },
           {
             id: 6,
@@ -172,7 +172,7 @@ export default {
               username: 'user',
             },
             createTime: 1595238771000,
-            info: '早餐味道美'
+            msg: '早餐味道美'
           },
           {
             id: 7,
@@ -181,7 +181,7 @@ export default {
               username: 'user',
             },
             createTime: 1595238771000,
-            info: '态度温和'
+            msg: '态度温和'
           },
           {
             id: 8,
@@ -190,7 +190,7 @@ export default {
               username: 'user',
             },
             createTime: 1595238771000,
-            info: '早餐味道美'
+            msg: '早餐味道美'
           },
           {
             id: 9,
@@ -199,7 +199,7 @@ export default {
               username: 'user',
             },
             createTime: 1595238771000,
-            info: '态度温和'
+            msg: '态度温和'
           },
           {
             id: 10,
@@ -208,7 +208,7 @@ export default {
               username: 'user',
             },
             createTime: 1595238771000,
-            info: '早餐味道美'
+            msg: '早餐味道美'
           },
         ]
       } else {
@@ -220,7 +220,7 @@ export default {
       });
     }, 100);
   },
-  [`post ${mockPrefix}/comments/add`]: (req, res) => {
+  [`get ${mockPrefix}/house/comments/add`]: (req, res) => {
     res.json({
       status: 200,
       data: 'ok'

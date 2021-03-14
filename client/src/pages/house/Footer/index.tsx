@@ -2,14 +2,14 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-22 22:23:11
- * @LastEditTime: 2021-03-02 15:01:29
+ * @LastEditTime: 2021-03-14 11:34:35
  * @LastEditors: zs
  */
 import React, { useState, useEffect } from 'react';
 import { TextareaItem, Button, Toast, Modal } from 'antd-mobile';
 import { useLocation, useSelector, useDispatch } from 'umi';
-import { RootState } from '@/types/store';
 import { useBindCreator } from '@/hooks'
+import styles from '../index.less'
 
 interface FooterProps {
 }
@@ -29,23 +29,16 @@ const Footer: React.FC<FooterProps> = ({
     addCommentsAsync: (payload) => ({ type: `${namespace}/addCommentsAsync`, payload })
   })
 
-  const handleClick = () => {
-    setShow(true)
-  };
+  const handleClick = () => setShow(true)
 
-  const handleChange = (value) => {
-    // console.log(value)
-    setCommentsValue(value);
-  };
+  const handleChange = (value) => setCommentsValue(value)
 
-  const handleClose = () => {
-    setShow(false)
-  };
+  const handleClose = () => setShow(false)
 
   const handleSubmit = () => {
     if (commentsValue) {
       handleClose();
-      addCommentsAsync({
+      dispatch.addCommentsAsync({
         comment: commentsValue,
         houseId: query?.id
       });
@@ -54,30 +47,22 @@ const Footer: React.FC<FooterProps> = ({
     }
   };
 
-  useEffect(() => {
-
-  }, [])
   return (
     <>
-      <div className='footer' onClick={handleClick}>
-        评论~
-    </div>
+      <div className={styles.footer} onClick={handleClick}>  评论~  </div>
       <Modal
-        show={show}
-        styleBody={{
-          height: '220px',
-          bottom: '0px',
-          top: 'unset'
-        }}
+        popup
+        visible={show}
         onClose={handleClose}
+        animationType="slide-up"
       >
-        <div className='modal-comment'>
+        <div className={styles.modal_comment}>
           <TextareaItem
             rows={2}
             count={200}
             onChange={handleChange}
           />
-          <Button className='comment-btn' type='warning' onClick={handleSubmit}>评论</Button>
+          <Button className={styles.comment_btn} type='warning' onClick={handleSubmit}>评论</Button>
         </div>
       </Modal>
     </>

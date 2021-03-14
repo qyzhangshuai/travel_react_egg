@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-22 22:23:11
- * @LastEditTime: 2021-03-02 10:51:18
+ * @LastEditTime: 2021-03-14 10:35:12
  * @LastEditors: zs
  */
 import { memo } from 'react';
@@ -25,20 +25,22 @@ const Footer: React.FC<FooterProps> = ({
     <div className={styles.comment}>
       <h1 className={styles.comment_title}>评论</h1>
       <div className={styles.comment_lists}>
-        {lists?.map(item => (
-          <div className={styles.comment_lists_item} key={item?.id}>
-            <img alt='user' className='avatar' src={item?.user?.avatar} />
-            <div className={styles.right}>
-              <div className={styles.right_top}>
-                <p>{item?.user?.username}</p>
-                <p>{timer(item?.createTime)}</p>
-              </div>
-              <div className={styles.right_bottom}>
-                {item?.msg}
+        {
+          lists?.map(item => (
+            <div className={styles.comment_lists_item} key={item?.id}>
+              <img alt='user' className='avatar' src={item?.user?.avatar} />
+              <div className={styles.right}>
+                <div className={styles.right_top}>
+                  <p>{item?.user?.username}</p>
+                  <p>{timer(item?.createTime)}</p>
+                </div>
+                <div className={styles.right_bottom}>
+                  {item?.msg}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
         <ShowLoading showLoading={showLoading} />
       </div>
     </div>

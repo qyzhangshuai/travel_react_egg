@@ -16,3 +16,10 @@ export const getHouseDetail = (data: GetHouseDetail) => request(house.getHouseDe
 
 // 评论
 export const getHouseComments = (data: GetHouseDetail) => request(house.getHouseComments, { data })
+
+// 添加评论
+interface AddCommentsAsync {
+  comment: string
+  houseId: number
+}
+export const addCommentsAsync = (data: AddCommentsAsync) => request(house.addCommentsAsync, { data })

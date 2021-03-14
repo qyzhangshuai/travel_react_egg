@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-08 11:43:15
- * @LastEditTime: 2021-03-02 20:35:23
+ * @LastEditTime: 2021-03-14 12:01:26
  * @LastEditors: zs
  */
 import { defineConfig } from 'umi';
@@ -12,6 +12,7 @@ import AntdDayjsWebpackPlugin from 'antd-dayjs-webpack-plugin';
 import routes from './route'
 import theme from './utils/theme.config'
 import version from './utils/version'
+
 const ENV = process.env.ENV || 'dev'
 const isDev = ENV === 'dev'
 const publicPathObj = {
@@ -88,6 +89,5 @@ export default defineConfig({
     //   memo.plugin('HardSourceWebpackPlugin').use(new HardSourceWebpackPlugin())
     //  插件
     memo.plugin('AntdDayjsWebpackPlugin').use(new AntdDayjsWebpackPlugin());
-
   },
 });

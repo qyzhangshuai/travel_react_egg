@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-08 13:51:39
- * @LastEditTime: 2021-02-25 14:07:15
+ * @LastEditTime: 2021-03-14 20:26:55
  * @LastEditors: zs
  */
 export default [
@@ -15,26 +15,43 @@ export default [
         wrappers: [
           '@/pages/auth',
         ],
-        component: '@/pages/home'
+        component: '@/pages/home',
+        title: '首页'
       },
       {
         path: '/house',
-        component: '@/pages/house'
+        component: '@/pages/house',
+        title: '房屋详情'
       },
       {
         path: '/search',
-        component: '@/pages/search'
+        component: '@/pages/search',
+        title: '搜索'
       },
       {
         path: '/order',
-        component: '@/pages/order'
+        component: '@/pages/order',
+        title: '订单',
       },
       {
         path: '/user',
-        component: '@/pages/user'
+        component: '@/pages/user/layouts',
+        routes: [
+          {
+            path: '/user',
+            component: '@/pages/user',
+            title: '我的',
+          },
+          {
+            path: '/user/edit',
+            component: '@/pages/user/edit',
+            title: '设置用户',
+          }
+        ]
       },
       {
-        component: '@/pages/notFound'
+        component: '@/pages/notFound',
+        title: '404',
       },
     ]
   },

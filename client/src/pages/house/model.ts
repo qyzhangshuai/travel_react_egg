@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-09 10:34:27
- * @LastEditTime: 2021-03-02 10:27:18
+ * @LastEditTime: 2021-03-14 11:32:49
  * @LastEditors: zs
  */
 import modelExtend from 'dva-model-extend'
@@ -64,8 +64,9 @@ const HouseModel: HouseModelType = {
         });
       }
     },
-    *addCommentsAsync({ payload = {} }, { call, put, select }){
-
+    *addCommentsAsync({ payload = {} }, { call }) {
+      const { success } = yield call(houseService.addCommentsAsync, payload)
+      return { success }
     },
 
   },
