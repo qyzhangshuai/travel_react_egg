@@ -1,0 +1,16 @@
+{
+  "development": {
+    "username": "root",
+    "password": "zhangshuai",
+    "database": "egg_house",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "zhangshuai",
+    "database": "egg_house",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

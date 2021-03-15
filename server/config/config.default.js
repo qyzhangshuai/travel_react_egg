@@ -2,7 +2,7 @@
  * @description: 开发配置
  * @author: zs
  * @Date: 2021-02-25 10:25:31
- * @LastEditTime: 2021-03-15 15:47:26
+ * @LastEditTime: 2021-03-15 17:12:09
  * @LastEditors: zs
  */
 /* eslint valid-jsdoc: "off" */
@@ -29,7 +29,7 @@ module.exports = (appInfo) => {
     dialect: "mysql",
     host: "127.0.0.1",
     port: 3306,
-    database: "egg-house-dev",
+    database: "egg_house",
     user: "root",
     password: "zhangshuai",
     define: {
