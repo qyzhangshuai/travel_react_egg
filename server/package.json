@@ -7,8 +7,11 @@
     "declarations": true
   },
   "dependencies": {
+    "dayjs": "^1.10.4",
     "egg": "^2.15.1",
-    "egg-scripts": "^2.11.0"
+    "egg-scripts": "^2.11.0",
+    "egg-sequelize": "^6.0.0",
+    "mysql2": "^2.2.5"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -23,10 +26,11 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-server",
-    "stop": "egg-scripts stop --title=egg-server-server",
     "dev": "egg-bin dev",
+    "start:daemon": "egg-scripts start --daemon --title=egg-server-server",
+    "stop": "egg-scripts stop --title=egg-server-server",
     "debug": "egg-bin debug",
+    "prod": "EGG_SERVER_ENV=prod egg-scripts start --title=egg-server-lession",
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",

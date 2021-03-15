@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-08 11:43:15
- * @LastEditTime: 2021-03-14 12:01:26
+ * @LastEditTime: 2021-03-15 14:16:14
  * @LastEditors: zs
  */
 import { defineConfig } from 'umi';
@@ -15,6 +15,8 @@ import version from './utils/version'
 
 const ENV = process.env.ENV || 'dev'
 const isDev = ENV === 'dev'
+const isTest = ENV === 'test'
+const isProd = ENV === 'prod'
 const publicPathObj = {
   'dev': '/',
   'test': '/dist/',
@@ -51,6 +53,9 @@ export default defineConfig({
   ],
   routes: routes,
   fastRefresh: {},
+  terserOptions: isProd ? {
+    pure_funcs: ['console.log']
+  } : {},
   // extraBabelPlugins: [
   //   [
   //     'import',
