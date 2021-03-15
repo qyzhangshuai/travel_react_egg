@@ -2,13 +2,12 @@
  * @description: 
  * @author: zs
  * @Date: 2021-03-14 22:05:36
- * @LastEditTime: 2021-03-14 22:17:32
+ * @LastEditTime: 2021-03-15 10:27:17
  * @LastEditors: zs
  */
 import { mockPrefix } from '../src/config/apis'
 export default {
   [`get ${mockPrefix}/orders/lists`]: (req, res) => {
-    console.log('req',req.query)
     setTimeout(() => {
       let data;
       if (req.query?.pageNum < 4) {

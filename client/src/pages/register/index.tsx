@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-03-14 22:26:42
- * @LastEditTime: 2021-03-14 22:50:25
+ * @LastEditTime: 2021-03-15 10:28:53
  * @LastEditors: zs
  */
 import { useMemo } from 'react';
@@ -39,7 +39,7 @@ const Register: React.FC<RegisterProps> = ({
   };
 
   const handleClick = () => {
-    history.push('/login');
+    history.push('/traval/login');
   };
 
   return (
