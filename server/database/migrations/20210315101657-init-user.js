@@ -2,7 +2,7 @@
  * @description: 用户表user
  * @author: zs
  * @Date: 2021-03-15 18:16:57
- * @LastEditTime: 2021-03-15 19:24:24
+ * @LastEditTime: 2021-03-15 19:42:30
  * @LastEditors: zs
  */
 "use strict";
