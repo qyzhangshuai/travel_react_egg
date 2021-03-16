@@ -2,7 +2,7 @@
  * @description: 框架会把 app/extend/context.js 中定义的对象与 Koa Context 的 prototype 对象进行合并，在处理请求时会基于扩展后的 prototype 生成 ctx 对象。
  * @author: zs
  * @Date: 2021-02-25 10:28:55
- * @LastEditTime: 2021-03-15 14:00:47
+ * @LastEditTime: 2021-03-16 19:58:58
  * @LastEditors: zs
  */
 "use strict";

@@ -2,16 +2,16 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-22 22:35:26
- * @LastEditTime: 2021-03-14 11:32:04
+ * @LastEditTime: 2021-03-16 17:57:30
  * @LastEditors: zs
  */
 import { mockPrefix } from '../src/config/apis'
 
 export default {
-  [`get ${mockPrefix}/house/search`]: (req, res) => {
+  [`post ${mockPrefix}/house/search`]: (req, res) => {
     setTimeout(() => {
       let data;
-      if (req.query?.pageNum < 4) {
+      if (req.body?.pageNum < 4) {
         data = [
           {
             id: 1,

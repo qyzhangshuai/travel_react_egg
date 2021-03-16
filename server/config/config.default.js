@@ -2,7 +2,7 @@
  * @description: 开发配置
  * @author: zs
  * @Date: 2021-02-25 10:25:31
- * @LastEditTime: 2021-03-15 17:12:09
+ * @LastEditTime: 2021-03-16 18:31:26
  * @LastEditors: zs
  */
 /* eslint valid-jsdoc: "off" */
@@ -18,12 +18,17 @@ module.exports = (appInfo) => {
    * @type {Egg.EggAppConfig}
    **/
   const config = (exports = {});
-
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + "_1612607207172_3021";
 
   // add your middleware config here
   config.middleware = [];
+
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+  };
 
   config.sequelize = {
     dialect: "mysql",

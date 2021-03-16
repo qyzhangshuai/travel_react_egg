@@ -2,16 +2,16 @@
  * @description: 请求接口集合
  * @author: zs
  * @Date: 2021-02-09 16:20:28
- * @LastEditTime: 2021-03-14 21:42:03
+ * @LastEditTime: 2021-03-16 20:23:58
  * @LastEditors: zs
  */
 const apiPrefixObj = {
   prod: '',
-  test: '',
-  dev: '',
+  test: '/api/proxy',
+  dev: '/api/proxy',
 }
 const apiPrefix = apiPrefixObj[process.env.ENV] // 实际的请求接口前缀
-export const mockPrefix = '/api/proxy' // mock的请求接口前缀，用于开发环境
+export const mockPrefix = '/api/mock' // mock的请求接口前缀，用于开发环境
 
 export const home = { // 首页
   getHotHouse: `${mockPrefix}/house/hot`, // 获取最热民宿
@@ -19,7 +19,7 @@ export const home = { // 首页
 }
 
 export const search = { // 房屋搜索页面
-  getSearch: `${mockPrefix}/house/search`, // 获取查询搜索信息
+  getSearch: `${apiPrefix}/house/search`, // 获取查询搜索信息
 }
 
 export const house = {

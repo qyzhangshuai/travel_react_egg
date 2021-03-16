@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-25 13:53:14
- * @LastEditTime: 2021-03-01 14:25:15
+ * @LastEditTime: 2021-03-16 20:32:25
  * @LastEditors: zs
  */
 import { useState, useEffect, useRef } from 'react';
@@ -38,6 +38,7 @@ const Search: React.FC<{}> = ({
 
 	const [houses, getHouseLists, loading] = useHttpHook(search.getSearch, {
 		defaultQuery: true,
+		method: 'POST',
 		data: {
 			...paramsState,
 			code: query?.code,

@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-08 11:43:15
- * @LastEditTime: 2021-03-15 14:16:14
+ * @LastEditTime: 2021-03-16 20:20:41
  * @LastEditors: zs
  */
 import { defineConfig } from 'umi';
@@ -67,12 +67,15 @@ export default defineConfig({
   //     "z-react-ui"
   //   ],
   // ],
-  // proxy: {
-  //   '/api/proxy': {
-  //     'target': 'http://127.0.0.1:7001/',
-  //     'changeOrigin': true
-  //   }
-  // },
+  proxy: {
+    '/api/proxy': {
+      'target': 'http://127.0.0.1:7001/',
+      'changeOrigin': true,
+      'pathRewrite': {
+        '^/api/proxy': ''
+      },
+    }
+  },
   externals: {
     lodash: "_",
   },
