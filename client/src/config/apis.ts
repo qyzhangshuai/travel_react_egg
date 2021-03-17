@@ -2,7 +2,7 @@
  * @description: 请求接口集合
  * @author: zs
  * @Date: 2021-02-09 16:20:28
- * @LastEditTime: 2021-03-17 11:21:19
+ * @LastEditTime: 2021-03-17 18:14:06
  * @LastEditors: zs
  */
 const apiPrefixObj = {
@@ -24,8 +24,8 @@ export const search = { // 房屋搜索页面
 
 export const house = {
   getHouseDetail: `${apiPrefix}/house/detail`, // 搜索房屋信息
-  getHouseComments: `${mockPrefix}/house/comments/lists`, // 评论
-  addCommentsAsync: `${mockPrefix}/house/comments/add`, // 添加评论
+  getHouseComments: `${mockPrefix}/comments/lists`, // 评论
+  addCommentsAsync: `${mockPrefix}/comments/add`, // 添加评论
 }
 
 export const order = {

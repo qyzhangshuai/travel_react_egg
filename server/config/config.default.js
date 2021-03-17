@@ -2,7 +2,7 @@
  * @description: 开发配置
  * @author: zs
  * @Date: 2021-02-25 10:25:31
- * @LastEditTime: 2021-03-16 18:31:26
+ * @LastEditTime: 2021-03-17 14:29:17
  * @LastEditors: zs
  */
 /* eslint valid-jsdoc: "off" */
@@ -43,9 +43,14 @@ module.exports = (appInfo) => {
     },
   };
 
+  config.jwt = {
+    secret: "egg-traval-jwt",
+  };
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
+    salt: "egg-traval-react", // 密码加盐
+    redisExpire: 60 * 60 * 24, // 1天redis的过期时间
   };
 
   return {

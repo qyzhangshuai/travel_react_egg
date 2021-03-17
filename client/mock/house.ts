@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-22 22:35:26
- * @LastEditTime: 2021-03-17 11:18:58
+ * @LastEditTime: 2021-03-17 18:13:58
  * @LastEditors: zs
  */
 import { mockPrefix } from '../src/config/apis'
@@ -113,7 +113,7 @@ export default {
       }
     });
   },
-  [`get ${mockPrefix}/house/comments/lists`]: (req, res) => {
+  [`get ${mockPrefix}/comments/lists`]: (req, res) => {
     setTimeout(() => {
       let data;
       if (req.query?.pageNum < 4) {
@@ -218,7 +218,7 @@ export default {
       });
     }, 100);
   },
-  [`get ${mockPrefix}/house/comments/add`]: (req, res) => {
+  [`get ${mockPrefix}/comments/add`]: (req, res) => {
     res.json({
       status: 200,
       data: 'ok'

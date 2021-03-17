@@ -2,7 +2,7 @@
  * @description: 共用的controller
  * @author: zs
  * @Date: 2021-03-15 15:12:51
- * @LastEditTime: 2021-03-16 17:34:46
+ * @LastEditTime: 2021-03-17 18:42:14
  * @LastEditors: zs
  */
 "use strict";
@@ -18,11 +18,11 @@ class BaseController extends Controller {
     };
   }
 
-  error(errMsg = "") {
+  error(errMsg = "", status) {
     const { ctx } = this;
     ctx.body = {
-      status: 500,
-      errMsg,
+      status: status || 500,
+      message: errMsg,
     };
   }
 }
