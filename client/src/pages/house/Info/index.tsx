@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-22 22:23:11
- * @LastEditTime: 2021-03-02 10:34:23
+ * @LastEditTime: 2021-03-17 11:20:55
  * @LastEditors: zs
  */
 import { Button } from 'antd-mobile';
@@ -19,8 +19,8 @@ const Info: React.FC<InfoProps> = ({ detail }) => {
 
   return (
     <div className={styles.info}>
-      <div className={styles.info_title}>{detail?.title}</div>
-      <div className={styles.info_msg}>简介：{detail?.msg}</div>
+      <div className={styles.info_title}>{detail?.name}</div>
+      <div className={styles.info_msg}>简介：{detail?.info}</div>
       <div className='info-price'>价格：￥{detail?.price}</div>
       <div className='info-time'>发布时间：{timer(detail?.publishTime)}</div>
       <div className='info-time'>开始出租：{timer(detail?.startTime, '')}</div>

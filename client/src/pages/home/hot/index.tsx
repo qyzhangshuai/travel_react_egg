@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-09 09:34:55
- * @LastEditTime: 2021-03-01 13:46:10
+ * @LastEditTime: 2021-03-17 11:04:38
  * @LastEditors: zs
  */
 import { RootState } from '@/types/store'
@@ -39,8 +39,8 @@ const Hot: React.FC<HotProps> = ({
           <div className={styles.hot_lists}>
             {houses?.map(item => (
               <div className={styles.hot_lists_item} key={item.id} onClick={() => handleClick(item.id)}>
-                <img className={styles.img} alt='img' src={item.img} />
-                <div className={styles.title}>{item.title}</div>
+                <img className={styles.img} alt='img' src={item.imgs?.[0]?.url} />
+                <div className={styles.title}>{item.name}</div>
                 <div className={styles.info}>{item.info}</div>
                 <div className={styles.price}>￥{item.price}</div>
               </div>

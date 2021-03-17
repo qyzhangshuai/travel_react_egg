@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-09 09:36:02
- * @LastEditTime: 2021-02-22 21:56:17
+ * @LastEditTime: 2021-03-17 10:43:53
  * @LastEditors: zs
  */
 import React, { useState, useEffect, memo } from 'react';
@@ -11,7 +11,6 @@ import dayjs from 'dayjs';
 import { history } from 'umi';
 import { isEqual } from 'lodash';
 import styles from './index.less'
-
 interface SearchProps {
   citys: any[]
   citysLoading: boolean
@@ -79,6 +78,7 @@ const Search: React.FC<SearchProps> = ({
         visible={dateShow}
         onCancel={handleDate}
         onConfirm={handleDateConfirm}
+        // minDate={dayjs().subtract(7, 'year').toDate()}
       />
     </div>
   )

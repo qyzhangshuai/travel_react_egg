@@ -2,7 +2,7 @@
  * @description: 民宿
  * @author: zs
  * @Date: 2021-03-16 13:34:50
- * @LastEditTime: 2021-03-16 20:02:27
+ * @LastEditTime: 2021-03-17 11:16:15
  * @LastEditors: zs
  */
 "use strict";
@@ -37,15 +37,16 @@ class HouseService extends BaseService {
 
   async search(params) {
     return this.run(async (ctx, app) => {
-      const { lte, gte, like } = app.Sequelize.Op;
+      // const { lte, gte, like } = app.Sequelize.Op;
+      const { like } = app.Sequelize.Op;
       const where = {
         cityCode: Array.isArray(params.code) ? params.code[0] : params.code,
-        startTime: {
-          [gte]: params.startTime,
-        },
-        endTime: {
-          [lte]: params.endTime,
-        },
+        // startTime: {
+        //   [gte]: params.startTime,
+        // },
+        // endTime: {
+        //   [lte]: params.endTime,
+        // },
         name: {
           [like]: "%" + params.houseName + "%",
         },

@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-25 13:53:14
- * @LastEditTime: 2021-03-16 20:32:25
+ * @LastEditTime: 2021-03-17 10:54:50
  * @LastEditors: zs
  */
 import { useState, useEffect, useRef } from 'react';
@@ -132,9 +132,9 @@ const Search: React.FC<{}> = ({
 	const row = (rowData, _sectionID, rowID) => {
 		return (
 			<div className={styles.item} key={rowID}>
-				<img alt='img' className={imgClassName} src={require('@/assets/blank.png')} data-src={rowData.img} />
+				<img alt='img' className={imgClassName} src={require('@/assets/blank.png')} data-src={rowData.imgs[0]?.url} />
 				<div className={styles.item_right}>
-					<div className={styles.title}>{rowData.title}</div>
+					<div className={styles.title}>{rowData.name}</div>
 					<div className={styles.price}>￥{rowData.price}</div>
 				</div>
 			</div>

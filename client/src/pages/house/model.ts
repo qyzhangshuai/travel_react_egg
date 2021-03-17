@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-09 10:34:27
- * @LastEditTime: 2021-03-14 11:32:49
+ * @LastEditTime: 2021-03-17 11:20:09
  * @LastEditors: zs
  */
 import modelExtend from 'dva-model-extend'
@@ -24,22 +24,23 @@ const HouseModel: HouseModelType = {
   },
   subscriptions: {
     setup({ dispatch, history }) {
-      return history.listen(({ pathname }) => {
+      // @ts-ignore
+      return history.listen(({ pathname, query }) => {
         if (/^\/house/g.test(pathname)) {
-          dispatch({ type: 'getHouseDetail' });
-          dispatch({ type: 'getHouseComments' });
+          dispatch({ type: 'getHouseDetail', payload: query });
+          dispatch({ type: 'getHouseComments', payload: query });
         }
       });
     },
   },
   effects: {
-    *getHouseDetail(_, { call, put }) {
-      const { success, data } = yield call(houseService.getHouseDetail);
+    *getHouseDetail({ payload }, { call, put }) {
+      const { success, data } = yield call(houseService.getHouseDetail, payload);
       if (success && data) {
-        const { banner = [], info = {} } = data || {}
+        const { imgs = [], ...info } = data || {}
         yield put({
           type: 'updateState',
-          payload: { banner, info }
+          payload: { banner: imgs.map(item => item.url), info }
         });
       }
     },

@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-22 22:35:26
- * @LastEditTime: 2021-03-16 17:57:30
+ * @LastEditTime: 2021-03-17 11:18:58
  * @LastEditors: zs
  */
 import { mockPrefix } from '../src/config/apis'
@@ -15,71 +15,71 @@ export default {
         data = [
           {
             id: 1,
-            img: 'http://img3.mukewang.com/szimg/5d1032ab08719e0906000338-360-202.jpg',
-            title: '东城民宿',
+            imgs: [{ url: 'http://img3.mukewang.com/szimg/5d1032ab08719e0906000338-360-202.jpg' }],
+            name: '东城民宿',
             info: '东城区交通方便',
             price: '100'
           },
           {
             id: 2,
-            img: 'http://img2.mukewang.com/szimg/5dc9047a09bae31e12000676-360-202.png',
-            title: '西城民宿',
+            imgs: [{ url: 'http://img2.mukewang.com/szimg/5dc9047a09bae31e12000676-360-202.png' }],
+            name: '西城民宿',
             info: '西城区山水怡情',
             price: '120'
           },
           {
             id: 3,
-            img: 'http://img2.mukewang.com/szimg/5ad05dc00001eae705400300-360-202.jpg',
-            title: '新区民宿',
+            imgs: [{ url: 'http://img2.mukewang.com/szimg/5ad05dc00001eae705400300-360-202.jpg' }],
+            name: '新区民宿',
             info: '新区民宿位置优越',
             price: '200'
           },
           {
             id: 4,
-            img: 'http://img1.mukewang.com/szimg/5a1f65a900015d1505400300-360-202.jpg',
-            title: '老城民宿',
+            imgs: [{ url: 'http://img1.mukewang.com/szimg/5a1f65a900015d1505400300-360-202.jpg' }],
+            name: '老城民宿',
             info: '老城区风景秀美',
             price: '220'
           },
           {
             id: 5,
-            img: 'http://img3.mukewang.com/szimg/5d1032ab08719e0906000338-360-202.jpg',
-            title: '东城民宿',
+            imgs: [{ url: 'http://img3.mukewang.com/szimg/5d1032ab08719e0906000338-360-202.jpg' }],
+            name: '东城民宿',
             info: '东城区交通方便',
             price: '100'
           },
           {
             id: 6,
-            img: 'http://img2.mukewang.com/szimg/5dc9047a09bae31e12000676-360-202.png',
-            title: '西城民宿',
+            imgs: [{ url: 'http://img2.mukewang.com/szimg/5dc9047a09bae31e12000676-360-202.png' }],
+            name: '西城民宿',
             info: '西城区山水怡情',
             price: '120'
           },
           {
             id: 7,
-            img: 'http://img2.mukewang.com/szimg/5ad05dc00001eae705400300-360-202.jpg',
-            title: '新区民宿',
+            imgs: [{ url: 'http://img2.mukewang.com/szimg/5ad05dc00001eae705400300-360-202.jpg' }],
+            name: '新区民宿',
             info: '新区民宿位置优越',
             price: '200'
           },
           {
             id: 8,
-            img: 'http://img1.mukewang.com/szimg/5a1f65a900015d1505400300-360-202.jpg',
-            title: '老城民宿',
+            imgs: [{ url: 'http://img1.mukewang.com/szimg/5a1f65a900015d1505400300-360-202.jpg' }],
+            name: '老城民宿',
             info: '老城区风景秀美',
             price: '220'
           },
           {
             id: 9,
-            img: 'http://img1.mukewang.com/szimg/5a1f65a900015d1505400300-360-202.jpg',
-            title: '老城民宿',
+            imgs: [{ url: 'http://img1.mukewang.com/szimg/5a1f65a900015d1505400300-360-202.jpg' }],
+            name: '老城民宿',
             info: '老城区风景秀美',
             price: '220'
           },
           {
             id: 10,
-            img: 'http://img1.mukewang.com/szimg/5a1f65a900015d1505400300-360-202.jpg',
-            title: '老城民宿',
+            imgs: [{ url: 'http://img1.mukewang.com/szimg/5a1f65a900015d1505400300-360-202.jpg' }],
+            name: '老城民宿',
             info: '老城区风景秀美',
             price: '220'
           },
@@ -99,19 +99,17 @@ export default {
       status: 200,
       data: {
         id: 8,
-        banner: [
-          'http://img2.mukewang.com/szimg/5dc9047a09bae31e12000676-360-202.png',
-          'http://img2.mukewang.com/szimg/5ad05dc00001eae705400300-360-202.jpg',
-          'http://img1.mukewang.com/szimg/5a1f65a900015d1505400300-360-202.jpg',
+        imgs: [
+          { url: 'http://img2.mukewang.com/szimg/5dc9047a09bae31e12000676-360-202.png' },
+          { url: 'http://img2.mukewang.com/szimg/5ad05dc00001eae705400300-360-202.jpg' },
+          { url: 'http://img1.mukewang.com/szimg/5a1f65a900015d1505400300-360-202.jpg' },
         ],
-        info: {
-          title: '老城民宿',
-          msg: '老城区风景秀美',
-          price: '220',
-          publishTime: 1595238771000,
-          startTime: 1595238771000,
-          endTime: 1597917171000,
-        }
+        name: '老城民宿',
+        info: '老城区风景秀美',
+        price: '220',
+        publishTime: 1595238771000,
+        startTime: 1595238771000,
+        endTime: 1597917171000,
       }
     });
   },
