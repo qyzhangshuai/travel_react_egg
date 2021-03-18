@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-07 10:18:30
- * @LastEditTime: 2021-03-18 13:53:12
+ * @LastEditTime: 2021-03-18 16:09:42
  * @LastEditors: zs
  */
 import { request } from '@/utils';
@@ -26,4 +26,4 @@ interface UpdateLoginInfo {
   avatar?: string;
 }
 // 更新用户信息
-export const updateLoginInfo = (data: UpdateLoginInfo) => request(user.updateLoginInfo, { data, method: 'PUT' })
+export const updateLoginInfo = (data: UpdateLoginInfo) => request(user.updateUserInfo, { data, method: 'PUT' })

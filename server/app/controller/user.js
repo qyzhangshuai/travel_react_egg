@@ -2,7 +2,7 @@
  * @description: 用户
  * @author: zs
  * @Date: 2021-03-17 14:35:03
- * @LastEditTime: 2021-03-18 15:58:08
+ * @LastEditTime: 2021-03-18 17:38:13
  * @LastEditors: zs
  */
 "use strict";
@@ -10,6 +10,9 @@
 const BaseController = require("./base");
 const md5 = require("md5");
 
+/**
+ * @Controller user
+ */
 class UserController extends BaseController {
   // 生成token
   async jwtSign({ id, username }) {
@@ -31,7 +34,15 @@ class UserController extends BaseController {
       createTime: ctx.helper.timestamp(result.createTime),
     };
   }
-  // 注册
+
+  /**  （ 注释必写，swagger-doc是根据这段注释来生成接口详细信息的 ）。
+   * @summary 注册
+   * @description 注册
+   * @router post /user/register
+   * @request body string username 用户名。（ get 对应 query 请求，请求值设定为 integer 纯数字类型，ID 为请求的字段，注意大小写，和下面的方法要一一对应，不然会报错 ）。
+   * @response 200 JsonBody 返回结果。（ 对应 contract 里面的验证属性，下面会提到 。）
+   */
+
   async register() {
     const { ctx, app } = this;
     const params = ctx.params();

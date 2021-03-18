@@ -2,7 +2,7 @@
  * @description: 插件
  * @author: zs
  * @Date: 2021-02-25 10:25:31
- * @LastEditTime: 2021-03-17 18:23:48
+ * @LastEditTime: 2021-03-18 18:27:41
  * @LastEditors: zs
  */
 "use strict";
@@ -26,3 +26,9 @@ exports.validate = {
   enable: true,
   package: "egg-validate",
 };
+
+// 配置 egg-swagger-doc 插件信息。
+// exports.swaggerdoc = {
+//   enable: true, // 是否启用。
+//   package: "egg-swagger-doc", // 指定包名称。
+// };

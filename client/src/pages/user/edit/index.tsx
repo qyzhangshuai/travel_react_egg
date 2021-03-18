@@ -2,7 +2,7 @@
  * @description: 设置编辑
  * @author: zs
  * @Date: 2021-03-14 20:04:09
- * @LastEditTime: 2021-03-14 20:52:04
+ * @LastEditTime: 2021-03-18 16:07:00
  * @LastEditors: zs
  */
 import { useState, useEffect, useMemo } from 'react';
@@ -19,14 +19,14 @@ interface EditProps {
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const namespace = 'user'
+const namespace = 'app'
 
 const Edit: React.FC<EditProps> = ({ form }) => {
   const { getFieldProps, validateFields } = useMemo(() => form, [form]);
   const { avatar, phone, sign } = useSelector(({ user }: RootState) => user, shallowEqual)
   const { getUserAsync, editUserAsync } = useBindCreator({
-    getUserAsync: (payload) => ({ type: `${namespace}/getUserAsync`, payload }),
-    editUserAsync: (payload) => ({ type: `${namespace}/editUserAsync`, payload }),
+    getUserAsync: (payload) => ({ type: `${namespace}/getUserInfo`, payload }),
+    editUserAsync: (payload) => ({ type: `${namespace}/updateLoginInfo`, payload }),
   })
   const [files, setFiles] = useState([{ url: avatar }]);
 
@@ -44,8 +44,6 @@ const Edit: React.FC<EditProps> = ({ form }) => {
       return;
     }
     validateFields((error, value) => {
-      // console.log(error)
-      // console.log(files)
       if (error) {
         Toast.fail('请将信息补充完整');
         return;
