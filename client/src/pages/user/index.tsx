@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-08 19:13:02
- * @LastEditTime: 2021-03-14 20:03:44
+ * @LastEditTime: 2021-03-18 11:06:19
  * @LastEditors: zs
  */
 import React, { useState, useEffect } from 'react';
@@ -22,7 +22,7 @@ const User: React.FC = () => {
     avatar,
     phone,
     sign,
-  } = useSelector(({ user }: RootState) => user, shallowEqual)
+  } = useSelector(({ app }: RootState) => app.userInfo, shallowEqual)
 
   const handleClick = () => {
     history.push({

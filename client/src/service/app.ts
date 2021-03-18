@@ -2,19 +2,28 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-07 10:18:30
- * @LastEditTime: 2021-02-22 22:06:44
+ * @LastEditTime: 2021-03-18 13:53:12
  * @LastEditors: zs
  */
 import { request } from '@/utils';
+import { user } from '@/config/apis'
 
 interface GetLoginInfo {
-  name: string;
+  username: string;
+  password: string
 }
-export const getLoginInfo = (data: GetLoginInfo) => request('/login', { data })
+// 登陆
+export const login = (data: GetLoginInfo) => request(user.login, { data, method: 'POST' })
+
+// 得到用户信息
+export const getLoginInfo = () => request(user.getLoginInfo)
+// 注册用户
+export const register = (data: GetLoginInfo) => request(user.register, { data, method: 'POST' })
 
 interface UpdateLoginInfo {
-  name?: string;
-  age?: number;
+  phone?: string;
+  sign?: string;
+  avatar?: string;
 }
 // 更新用户信息
-export const updateLoginInfo = (data: UpdateLoginInfo) => request('/login', { data })
+export const updateLoginInfo = (data: UpdateLoginInfo) => request(user.updateLoginInfo, { data, method: 'PUT' })

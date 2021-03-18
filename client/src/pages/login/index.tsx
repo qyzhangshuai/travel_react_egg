@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-03-14 22:26:03
- * @LastEditTime: 2021-03-14 22:47:12
+ * @LastEditTime: 2021-03-18 11:12:26
  * @LastEditors: zs
  */
 import { useMemo } from 'react';
@@ -21,7 +21,7 @@ const Login: React.FC<LoginProps> = ({
   form,
 }) => {
   const { getFieldProps, validateFields } = useMemo(() => form, [form])
-  
+
   const dispatch = useDispatch()
 
   const handleSubmit = () => {
@@ -30,7 +30,10 @@ const Login: React.FC<LoginProps> = ({
         Toast.fail('请将信息填写完整');
         return;
       } else {
-        // loginAsync(value);
+        dispatch({
+          type: 'app/login',
+          payload: { ...value }
+        })
       }
     });
   };

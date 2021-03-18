@@ -2,7 +2,7 @@
  * @description: 
  * @author: zs
  * @Date: 2021-02-25 13:53:14
- * @LastEditTime: 2021-03-17 10:54:50
+ * @LastEditTime: 2021-03-17 20:13:04
  * @LastEditors: zs
  */
 import { useState, useEffect, useRef } from 'react';
@@ -14,6 +14,7 @@ import { CommonEnum } from '@/constants';
 import { search } from '@/config/apis'
 import styles from './index.less';
 import Skeletons from './Skeletons'
+import { useImgHook1 } from '@/hooks/useImgHook'
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
@@ -78,7 +79,8 @@ const Search: React.FC<{}> = ({
 		}
 	}, [houses])
 
-	const [throttleLazyload] = useImgHook(`.${imgClassName}`);
+	// const [throttleLazyload] = useImgHook(`.${imgClassName}`);
+	useImgHook1(`.${imgClassName}`, null, null);
 
 	const handleChange = (value: string) => {
 		setParamsState({ houseName: value });
@@ -97,7 +99,7 @@ const Search: React.FC<{}> = ({
 		// 请求
 		const { success } = await getHouseLists(data)
 		if (!success) return
-		throttleLazyload()
+		// throttleLazyload()
 	};
 
 	const handleCancle = () => {

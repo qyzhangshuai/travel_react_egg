@@ -2,7 +2,7 @@
  * @description: 请求接口集合
  * @author: zs
  * @Date: 2021-02-09 16:20:28
- * @LastEditTime: 2021-03-17 18:14:06
+ * @LastEditTime: 2021-03-18 13:51:32
  * @LastEditors: zs
  */
 const apiPrefixObj = {
@@ -12,6 +12,14 @@ const apiPrefixObj = {
 }
 const apiPrefix = apiPrefixObj[process.env.ENV] // 实际的请求接口前缀
 export const mockPrefix = '/api/mock' // mock的请求接口前缀，用于开发环境
+
+// 用户操作，登陆注册等
+export const user = {
+  login: `${apiPrefix}/user/login`, // 登陆
+  getLoginInfo: `${apiPrefix}/user/getLoginInfo`, // 得到用户信息
+  updateLoginInfo: `${apiPrefix}/user/updateLoginInfo`, // 更新用户信息
+  register: `${apiPrefix}/user/register`, // 注册
+}
 
 export const home = { // 首页
   getHotHouse: `${apiPrefix}/house/hot`, // 获取最热民宿

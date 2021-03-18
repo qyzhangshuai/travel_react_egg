@@ -2,7 +2,7 @@
  * @description: 全局的model
  * @author: zs
  * @Date: 2021-02-07 09:50:13
- * @LastEditTime: 2021-02-09 11:21:32
+ * @LastEditTime: 2021-03-18 14:43:26
  * @LastEditors: zs
  */
 import modelExtend from 'dva-model-extend'
@@ -15,16 +15,56 @@ const namespace = 'app'
 const globalModel: AppModelType = {
     namespace,
     state: {
-        userInfo: { name: 'hxy' },
+        userInfo: {},
     },
     effects: {
-        *getUserInfo({ payload }, { call, put }) {
-            const response = yield call(appService.getLoginInfo, { ...payload, name: 'test' });
-            if (response.status === 'ok') {
+        // 登陆
+        *login({ payload }, { call, put }) {
+            const { success, data } = yield call(appService.login, payload);
+            if (success && data) {
                 yield put({
-                    type: 'save',
+                    type: 'updateState',
                     payload: {
-                        userInfo: response.data,
+                        userInfo: data,
+                    },
+                });
+            }
+        },
+        // 得到用户信息
+        *getUserInfo(_, { call, put }) {
+            const { success, data } = yield call(appService.getLoginInfo);
+            if (success && data) {
+                yield put({
+                    type: 'updateState',
+                    payload: {
+                        userInfo: data,
+                    },
+                });
+            }
+        },
+        // 注册用户
+        *register({ payload }, { call, put }) {
+            const { success, data } = yield call(appService.register, payload);
+            if (success && data) {
+                yield put({
+                    type: 'updateState',
+                    payload: {
+                        userInfo: data,
+                    },
+                });
+            }
+            return { success }
+        },
+
+        // 更改用户信息
+        * updateLoginInfo({ payload }, { call, put }) {
+            const { success, data } = yield call(appService.updateLoginInfo, payload);
+            if (success && data) {
+
+                yield put({
+                    type: 'updateState',
+                    payload: {
+                        userInfo: data,
                     },
                 });
             }

@@ -2,13 +2,14 @@
  * @description: 
  * @author: zs
  * @Date: 2021-03-14 22:26:42
- * @LastEditTime: 2021-03-15 10:28:53
+ * @LastEditTime: 2021-03-18 14:53:18
  * @LastEditors: zs
  */
 import { useMemo } from 'react';
 import { List, InputItem, Button, Toast } from 'antd-mobile';
 import { createForm } from 'rc-form';
-import { history, useDispatch } from 'umi';
+import { history } from 'umi';
+import { useBindCreator } from '@/hooks'
 import styles from './index.less'
 
 interface RegisterProps {
@@ -22,9 +23,11 @@ const Register: React.FC<RegisterProps> = ({
   form,
 }) => {
   const { getFieldProps, validateFields } = useMemo(() => form, [form])
-
+  const dispatch = useBindCreator({
+    register: (payload) => ({ type: 'app/register', payload })
+  })
   const handleSubmit = () => {
-    validateFields((error, value) => {
+    validateFields(async (error, value) => {
       if (error) {
         Toast.fail('请将信息填写完整');
         return;
@@ -34,6 +37,10 @@ const Register: React.FC<RegisterProps> = ({
           return;
         }
         // registerAsync(value);
+        const { success } = await dispatch.register(value)
+        if (!success) return
+        Toast.success('用户注册成功')
+        history.push('/home')
       }
     });
   };

@@ -2,13 +2,17 @@
  * @description: 全局model声明
  * @author: zs
  * @Date: 2021-02-07 10:22:33
- * @LastEditTime: 2021-02-08 17:49:15
+ * @LastEditTime: 2021-03-18 13:54:16
  * @LastEditors: zs
  */
 import { Effect, Reducer, ImmerReducer, Subscription } from 'umi'
 
 interface UserInfo {
-  name: string
+  id?: number,
+  username?: string,
+  avatar?: string,
+  phone?: string,
+  sign?: string,
 }
 
 export interface AppModelState {
@@ -20,6 +24,9 @@ export interface AppModelType {
   state: AppModelState;
   effects: {
     getUserInfo: Effect;
+    login: Effect;
+    register: Effect;
+    updateLoginInfo: Effect;
   };
   reducers: {
     // save: Reducer<GlobalModelState>;

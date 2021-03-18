@@ -2,7 +2,7 @@
  * @description: 在应用启动时会基于扩展后的 prototype 生成 app 对象。
  * @author: zs
  * @Date: 2021-02-25 10:28:55
- * @LastEditTime: 2021-03-15 14:58:43
+ * @LastEditTime: 2021-03-18 10:05:53
  * @LastEditors: zs
  */
 "use strict";

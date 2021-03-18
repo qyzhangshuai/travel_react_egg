@@ -2,7 +2,7 @@
  * @description: 用户
  * @author: zs
  * @Date: 2021-03-17 14:35:03
- * @LastEditTime: 2021-03-17 18:37:46
+ * @LastEditTime: 2021-03-18 15:58:08
  * @LastEditors: zs
  */
 "use strict";
@@ -35,9 +35,11 @@ class UserController extends BaseController {
   async register() {
     const { ctx, app } = this;
     const params = ctx.params();
-    const userResult = await this.service.user.getUser(params);
+    const userResult = await this.service.user.getUser({
+      username: params.username,
+    });
     if (userResult) {
-      this.error(`用户${params.username}已经存在`, 200);
+      this.error(`用户${params.username}已经存在`);
       return;
     }
     const result = await this.service.user.register({
@@ -61,8 +63,8 @@ class UserController extends BaseController {
     const params = ctx.params();
     try {
       ctx.validate({
-        username: { isquired: true },
-        password: { isquired: true },
+        username: "string",
+        password: "string",
       });
 
       const result = await ctx.service.user.getUser(params);
@@ -76,7 +78,7 @@ class UserController extends BaseController {
           token,
         });
       } else {
-        this.error(`用户${params.username}不存在`, 200);
+        this.error(`用户不存在或密码错误`);
       }
     } catch (err) {
       this.error(err);
@@ -85,8 +87,27 @@ class UserController extends BaseController {
   // 获取个人详情信息
   async detail() {
     const { ctx } = this;
-    const params = ctx.params("id");
-    await ctx.service.user.detail(params);
+    const userInfo = ctx.userInfo;
+    if (!userInfo) return this.error("TOKEN_EXPIRE_ERROR");
+    const user = await ctx.service.user.getUserById(ctx.params("id"));
+
+    if (user) {
+      this.success({
+        ...this.parseResult(ctx, user),
+      });
+    } else {
+      this.error("该用户不存在");
+    }
+  }
+
+  async updateUserInfo() {
+    const { ctx } = this;
+    const userInfo = ctx.userInfo;
+    if (!userInfo) return this.error("TOKEN_EXPIRE_ERROR");
+    const result = await ctx.service.user.updateUserInfo(ctx.params());
+    if (result) {
+      this.success("更改个人信息成功");
+    }
   }
 }
 
